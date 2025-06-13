@@ -1,6 +1,6 @@
 #  Redezeit Web Metrics Analysis
 
-This repository hosts the collaborative data analysis project focused on [Redezeit.de](https://www.redezeit.de), a non-profit platform where individuals can find someone to listen when they feel they have no one else. The platform is sustained by trained, pro bono listeners, and makes no profit. Our goal is to support Redezeit’s mission by using data to improve outreach and understand how users engage with the website.
+This repository hosts the collaborative data analysis project focused on [Redezeit.de](https://www.virtualsupporttalks.de), a non-profit platform where individuals can find someone to listen when they feel they have no one else. The platform is sustained by trained, pro bono listeners, and makes no profit. Our goal is to support Redezeit’s mission by using data to improve outreach and understand how users engage with the website.
 
 ---
 

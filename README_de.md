@@ -1,6 +1,6 @@
 #  Redezeit Webanalyse-Projekt
 
-Dieses Repository dokumentiert unser gemeinsames Data-Analytics-Projekt rund um [Redezeit.de](https://www.redezeit.de) – eine gemeinnützige Plattform, auf der Menschen in emotional schwierigen Situationen kostenlose, pro bono Gespräche mit geschulten Zuhörer:innen führen können. Unser Ziel ist es, Redezeit durch datenbasierte Einblicke bei der Verbesserung der Reichweite und der Nutzer:innenbindung zu unterstützen.
+Dieses Repository dokumentiert unser gemeinsames Data-Analytics-Projekt rund um [Redezeit.de](https://www.virtualsupporttalks.de) – eine gemeinnützige Plattform, auf der Menschen in emotional schwierigen Situationen kostenlose, pro bono Gespräche mit geschulten Zuhörer:innen führen können. Unser Ziel ist es, Redezeit durch datenbasierte Einblicke bei der Verbesserung der Reichweite und der Nutzer:innenbindung zu unterstützen.
 
 ---
 
