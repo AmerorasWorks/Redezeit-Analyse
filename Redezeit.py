@@ -17,7 +17,7 @@ GERMAN_MONTHS = {
 
 # Braucht man um im Kalender den richtigen Tag zu Wählen
 GERMAN_MONTHS_FOR_DAYS_BUTTON = {
-    1: "Jan.",  2: "Feb.",  3: "März'",   4: "Apr.",
+    1: "Jan.",  2: "Feb.",  3: 'März',   4: "Apr.",
     5: "Mai",  6: "Juni", 7: "Juli",   8: "Aug.",
     9: "Sept.",10: "Okt.", 11: "Nov.",   12: "Dez."
 }
