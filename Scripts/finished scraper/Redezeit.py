@@ -161,7 +161,7 @@ def init_driver(url: str):
     service = Service()
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=service, options=options)
-
+    driver.maximize_window()
     driver.get(url)
     return driver
 
