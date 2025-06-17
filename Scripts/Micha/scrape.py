@@ -14,8 +14,10 @@ def scrape_website(website):
 	try:
 		driver.get(website)
 		print("Website loaded.....")
+		print("Bitte im geöffneten Chrome-Fenster mit Google-Account einloggen und das Dashboard komplett laden!")
+		input("Drücke [Enter], sobald du eingeloggt bist und das Dashboard angezeigt wird ...")
 		html = driver.page_source
-		time.sleep(10)
+		#time.sleep(10)
 		
 		return html
 	finally:
