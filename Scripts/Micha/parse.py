@@ -1,5 +1,9 @@
+from ollama import Client
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+
+client = Client(host="192.168.178.20:8501")
+model = OllamaLLM(client=client, model="llama3.1")
 
 template = (
     "You are tasked with extracting specific information from the following text content: {dom_content}. "
@@ -10,9 +14,15 @@ template = (
     "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
 )
 
-model = OllamaLLM(model="llama3.1")
 
 def parse_with_ollama(dom_chunks, parse_description):
+	print("DEBUG: dom_chunks Inhalt:", dom_chunks)
+	print("DEBUG: parse_description:", parse_description)
+	
+	if not dom_chunks:
+		print("FEHLER: dom_chunks ist leer!")
+		return "Kein DOM-Content gefunden – bitte DOM-Auslese prüfen!"
+	
 	prompt = ChatPromptTemplate.from_template(template)
 	chain = prompt | model
 	
