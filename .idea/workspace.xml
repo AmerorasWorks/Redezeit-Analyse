@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.v2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/test_ai_scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/scrape.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/scrape.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,7 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dev__Micha&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;10-automate&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Redezeit-Analyse/Scripts/finished scraper&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -48,6 +55,7 @@
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\finished scraper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Data\Scrapping data" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Bernado" />
@@ -76,6 +84,10 @@
       <workItem from="1750143398871" duration="5980000" />
       <workItem from="1750150098627" duration="59000" />
       <workItem from="1750150408383" duration="4070000" />
+      <workItem from="1750228285682" duration="8442000" />
+      <workItem from="1750239738538" duration="28000" />
+      <workItem from="1750240263836" duration="9000" />
+      <workItem from="1750240959102" duration="7195000" />
     </task>
     <servers />
   </component>
