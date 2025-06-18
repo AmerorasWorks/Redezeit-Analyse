@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.v2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/test_ai_scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/scrape.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/scrape.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;8-integrate-calender-logic-csv-handler&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;10-automate&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Redezeit-Analyse/Scripts/finished scraper&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -86,6 +85,9 @@
       <workItem from="1750150098627" duration="59000" />
       <workItem from="1750150408383" duration="4070000" />
       <workItem from="1750228285682" duration="8442000" />
+      <workItem from="1750239738538" duration="28000" />
+      <workItem from="1750240263836" duration="9000" />
+      <workItem from="1750240959102" duration="7195000" />
     </task>
     <servers />
   </component>
