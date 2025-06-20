@@ -13,14 +13,14 @@ from kalender_funktion import select_date_range
 
 # ========== Tabellendaten scrapen ==========
 
-def extract_table_data(driver, date_str: str):
+def extract_landingpage_data(driver, date_str: str):
     wait = WebDriverWait(driver, 10)
     data = []
     seen_fingerprints = set()
 
     def get_cells():
         all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
-        last_table = all_tables[-1]
+        last_table = all_tables[2]
         return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
 
     while True:
@@ -44,10 +44,10 @@ def extract_table_data(driver, date_str: str):
                 entry = {
                     "Datum": date_str,
                     "EID": row[0],
-                    "Name des Events": row[1],
-                    "event_label": row[2],
-                    "Aktive Nutzer": row[3].replace(".", "").replace(",", "."),
-                    "Ereignisanzahl": row[4].replace(".", "").replace(",", "."),
+                    "Quelle": row[1],
+                    "Sitzungen": row[2],
+                    "Aufrufe": row[3],
+                    "Aufrufe/Sitzung": row[4].replace(".", "").replace(",", ".")
                 }
                 data.append(entry)
                 row = []
@@ -99,11 +99,18 @@ def init_driver(url: str):
 
 if __name__ == '__main__':
     url = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
-    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/what_did_users_do.csv", headers=["Datum", "EID", "Name des Events", "event_label", "Aktive Nutzer", "Ereignisanzahl"])
+    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/where_did_they_come_from.csv",
+                                headers=["Datum",
+                                        "EID",
+                                        "Quelle",
+                                        "Sitzungen",
+                                        "Aufrufe",
+                                        "Aufrufe pro Sitzung"]
+                                )
     driver = init_driver(url)
     input("🔐 Bitte im geöffneten Fenster anmelden und zur Tabelle scrollen. Danach hier Enter drücken ...")
 
-    start_date = date(2023,1,1)
+    start_date = date(2025,6,19)
     yesterday = date.today()
     yesterday -= timedelta(days=1)
     print (f"Anfangsdatum: {start_date}\nEnddatum: {yesterday}")
@@ -115,7 +122,7 @@ if __name__ == '__main__':
             select_date_range(driver, current_date, current_date)
             time.sleep(5)
             date_str = current_date.isoformat()
-            table_data = extract_table_data(driver, date_str)
+            table_data = extract_landingpage_data(driver, date_str)
 
             for row in table_data:
                 csv_handler.append_row(row)
