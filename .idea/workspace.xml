@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/Redezeit_tabelle2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/csv_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/finished scraper/csv_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/kalender_funktion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Scrapping data as csv/output.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Scrapping data as csv/user_behaviors.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Birol/Redezeit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Birol/User_behaviors_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/AI_WebScraper.v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/app2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Micha/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/finished scraper/Redezeit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/finished scraper/Redezeit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +52,9 @@
     "Python.Landingpage_scraper.executor": "Run",
     "Python.Redezeit_scraper.executor": "Run",
     "Python.Redezeit_tabelle2.executor": "Run",
+    "Python.User_behaviors_scraper.executor": "Run",
     "Python.What_did_users_do_scraper.executor": "Run",
+    "Python.Where_did_they_come_from_scraper.executor": "Run",
     "Python.crawl4ai.executor": "Run",
     "Python.lookerstudio_scraper.executor": "Run",
     "Python.playwright.executor": "Run",
@@ -84,10 +79,10 @@
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\finished scraper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
       <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Data\Scrapping data" />
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Bernado" />
     </key>
   </component>
@@ -131,21 +126,11 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py</url>
-          <line>140</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$scraper_playwright.coverage" NAME="scraper_playwright Coverage Results" MODIFIED="1750402889724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$User_behaviors_scraper.coverage" NAME="User_behaviors_scraper Coverage Results" MODIFIED="1750446694858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Redezeit_scraper.coverage" NAME="Redezeit_scraper Coverage Results" MODIFIED="1750419455628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
-    <SUITE FILE_PATH="coverage/AI_WebScraper_py$Landingpage_scraper.coverage" NAME="Landingpage_scraper Coverage Results" MODIFIED="1750424960395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$Landingpage_scraper.coverage" NAME="Landingpage_scraper Coverage Results" MODIFIED="1750442795195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$looker_scraper_50tage.coverage" NAME="looker_scraper_50tage Coverage Results" MODIFIED="1749719930716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$lookerstudio_scraper.coverage" NAME="lookerstudio_scraper Coverage Results" MODIFIED="1750408198903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$Redezeit__1_.coverage" NAME="Redezeit (1) Coverage Results" MODIFIED="1749733569650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
@@ -153,8 +138,9 @@
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$playwright.coverage" NAME="playwright Coverage Results" MODIFIED="1750402813687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_py$testscraper.coverage" NAME="testscraper Coverage Results" MODIFIED="1750068506945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Redezeit_tabelle2.coverage" NAME="Redezeit_tabelle2 Coverage Results" MODIFIED="1750425080772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
-    <SUITE FILE_PATH="coverage/AI_WebScraper_py$What_did_users_do_scraper.coverage" NAME="What_did_users_do_scraper Coverage Results" MODIFIED="1750428570642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$What_did_users_do_scraper.coverage" NAME="What_did_users_do_scraper Coverage Results" MODIFIED="1750432560602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$Redezeit.coverage" NAME="Redezeit Coverage Results" MODIFIED="1749808497579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$crawl4ai.coverage" NAME="crawl4ai Coverage Results" MODIFIED="1750345323205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$Where_did_they_come_from_scraper.coverage" NAME="Where_did_they_come_from_scraper Coverage Results" MODIFIED="1750442504536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
   </component>
 </project>
