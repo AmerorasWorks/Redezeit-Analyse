@@ -1,0 +1,4 @@
+EventName,Description
+click,Track click events
+scroll,Track scroll events
+video_play,Track video_play events
