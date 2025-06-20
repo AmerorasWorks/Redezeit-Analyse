@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from csv_manager import CSVFileHandler
+from Scripts.Dorian.csv_manager import CSVFileHandler
 
 # Braucht man um im Kalender den richtigen Monat zu picken (Wenn Webseite auf Deutsch ist)
 GERMAN_MONTHS = {
@@ -168,7 +168,7 @@ def init_driver(url: str):
 # Main Methode, die den Loop ausführt
 if __name__ == '__main__':
     redezeit_url = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
-    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/output.csv", headers=["Datum", "Seitenaufrufe", "Nutzer Insgesamt", "Durchschn. Zeit auf der Seite", "Absprungrate", "Seiten / Sitzung"])
+    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/user_behaviors.csv", headers=["Datum", "Seitenaufrufe", "Nutzer Insgesamt", "Durchschn. Zeit auf der Seite", "Absprungrate", "Seiten / Sitzung"])
     driver = init_driver(redezeit_url)
 
     # Datenangabe von wann bis wann wir die Daten auslesen wollen
@@ -186,7 +186,7 @@ if __name__ == '__main__':
     while current_date <= yesterday:
         print(f"Getting data for Day: {current_date}.")
         select_date_range(driver, current_date, current_date)
-        time.sleep(5)
+        time.sleep(10)
         user_behaviour = read_value_user_behaviour(driver, current_date)
         if user_behaviour:
             csv_handler.append_row(user_behaviour)
