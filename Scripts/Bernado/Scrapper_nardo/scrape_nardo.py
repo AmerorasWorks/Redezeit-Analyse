@@ -7,6 +7,17 @@ from datetime import date, timedelta
 import time
 from bs4 import BeautifulSoup
 
+
+#  Here are a few things im trying to make this work on my machine
+
+#  extra imports
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+
+#  extra code
+
+
+
 # Kalenderlogik
 GERMAN_MONTHS = {
     1: "JAN.",  2: "FEB.",  3: "MÄRZ",   4: "APR.",
@@ -117,7 +128,7 @@ def select_date_range(driver, start: date, end: date):
 def scrape_website(website):
     print("Launching Chrome Browser.....")
 
-    chrome_driver_path = "./chromedriver.exe"
+    chrome_driver_path = r"C:\Users\Admin\Documents\Data_Craft_2024-25\Projects\Redezeit\Redezeit-Analyse\Scripts\Bernado\Scrapper_nardo\chromedriver.exe"
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
     driver.maximize_window()
