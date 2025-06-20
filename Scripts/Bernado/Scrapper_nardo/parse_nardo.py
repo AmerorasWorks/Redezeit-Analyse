@@ -2,7 +2,7 @@ from ollama import Client
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
-client = Client(host="192.168.1.7")
+client = Client(host="192.168.0.35")
 model = OllamaLLM(client=client, model="llama3.1")
 
 template = (
