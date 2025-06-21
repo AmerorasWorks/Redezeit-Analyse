@@ -17,7 +17,7 @@ class CSVFileHandler:
                 write_header = True
 
         if write_header:
-            with open(self.file_path, mode='w', newline='', encoding='utf-8-sig') as f:
+            with open(self.file_path, mode='w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow(self.headers)
 
@@ -25,10 +25,10 @@ class CSVFileHandler:
         if isinstance(row, dict):
             if not self.headers:
                 raise ValueError("Ohne header kannst du keine Dictionary nutzen.")
-            with open(self.file_path, mode='a', newline='', encoding='utf-8-sig') as f:
+            with open(self.file_path, mode='a', newline='', encoding='utf-8') as f:
                 writer = csv.DictWriter(f, fieldnames=self.headers)
                 writer.writerow(row)
         else:
-            with open(self.file_path, mode='a', newline='', encoding='utf-8-sig') as f:
+            with open(self.file_path, mode='a', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow(row)

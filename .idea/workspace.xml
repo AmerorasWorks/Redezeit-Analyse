@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Scrapping data as csv/what_did_users_do2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/kalender_funktion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/Landingpage_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/Landingpage_scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/csv_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/csv_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,32 +46,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Landingpage_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Redezeit_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Redezeit_tabelle2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.User_behaviors_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.What_did_users_do_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Where_did_they_come_from_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.crawl4ai.executor&quot;: &quot;Run&quot;,
-    &quot;Python.lookerstudio_scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.playwright.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scraper_playwright.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;13-testing-webscraper&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Redezeit-Analyse/Scripts/Dorian&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.Landingpage_scraper.executor": "Run",
+    "Python.Redezeit_scraper.executor": "Run",
+    "Python.Redezeit_tabelle2.executor": "Run",
+    "Python.User_behaviors_scraper.executor": "Run",
+    "Python.What_did_users_do_scraper.executor": "Run",
+    "Python.Where_did_they_come_from_scraper.executor": "Run",
+    "Python.crawl4ai.executor": "Run",
+    "Python.lookerstudio_scraper.executor": "Run",
+    "Python.playwright.executor": "Run",
+    "Python.scraper_playwright.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "13-testing-webscraper",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/Admin/Desktop/Redezeit-Analyse/Scripts/Dorian",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
@@ -122,7 +120,6 @@
       <workItem from="1750348324694" duration="468000" />
       <workItem from="1750349020788" duration="12000" />
       <workItem from="1750401301866" duration="28549000" />
-      <workItem from="1750491573272" duration="1083000" />
     </task>
     <servers />
   </component>
@@ -130,8 +127,8 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AI_WebScraper_py$User_behaviors_scraper.coverage" NAME="User_behaviors_scraper Coverage Results" MODIFIED="1750446694858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$scraper_playwright.coverage" NAME="scraper_playwright Coverage Results" MODIFIED="1750402889724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$User_behaviors_scraper.coverage" NAME="User_behaviors_scraper Coverage Results" MODIFIED="1750446694858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Redezeit_scraper.coverage" NAME="Redezeit_scraper Coverage Results" MODIFIED="1750419455628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Landingpage_scraper.coverage" NAME="Landingpage_scraper Coverage Results" MODIFIED="1750442795195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$looker_scraper_50tage.coverage" NAME="looker_scraper_50tage Coverage Results" MODIFIED="1749719930716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -141,7 +138,7 @@
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$playwright.coverage" NAME="playwright Coverage Results" MODIFIED="1750402813687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_py$testscraper.coverage" NAME="testscraper Coverage Results" MODIFIED="1750068506945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Redezeit_tabelle2.coverage" NAME="Redezeit_tabelle2 Coverage Results" MODIFIED="1750425080772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
-    <SUITE FILE_PATH="coverage/AI_WebScraper_py$What_did_users_do_scraper.coverage" NAME="What_did_users_do_scraper Coverage Results" MODIFIED="1750492390948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$What_did_users_do_scraper.coverage" NAME="What_did_users_do_scraper Coverage Results" MODIFIED="1750432560602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$Redezeit.coverage" NAME="Redezeit Coverage Results" MODIFIED="1749808497579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$crawl4ai.coverage" NAME="crawl4ai Coverage Results" MODIFIED="1750345323205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Where_did_they_come_from_scraper.coverage" NAME="Where_did_they_come_from_scraper Coverage Results" MODIFIED="1750442504536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
