@@ -4,31 +4,52 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from selenium.common.exceptions import TimeoutException
-from csv_manager import CSVFileHandler
-from kalender_funktion import select_date_range
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, StaleElementReferenceException
+from Scripts.Dorian.utils.csv_manager import CSVFileHandler
+from Scripts.Dorian.utils.kalender_funktion import select_date_range
 
 
 # ========== Tabellendaten scrapen ==========
 
-def extract_landingpage_data(driver, date_str: str):
+def extract_table_data(driver, date_str: str):
     wait = WebDriverWait(driver, 10)
     data = []
     seen_fingerprints = set()
 
     def get_cells():
         all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
-        last_table = all_tables[2]
+        if len(all_tables) < 3:
+            raise Exception("❌ Erwartete Tabelle (Index 2) nicht gefunden.")
+        last_table = all_tables[3]
         return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
 
+    def get_fingerprint(cells):
+        return tuple(cell.text.strip() for cell in cells[:10])
+
+    def wait_for_page_change(driver, old_fingerprint):
+        wait = WebDriverWait(driver, 10)
+
+        def changed(d):
+            try:
+                new_cells = get_cells()
+                if len(new_cells) < 10:
+                    return False
+                return get_fingerprint(new_cells) != old_fingerprint
+            except StaleElementReferenceException:
+                return False
+
+        wait.until(changed)
+
     while True:
-        cells = get_cells()
+        try:
+            cells = get_cells()
+        except Exception as e:
+            print(f"❌ Fehler beim Lesen der Zellen: {e}")
+            break
+
         print(f"📦 {len(cells)} Zellen erkannt (Seite).")
 
-        # Fingerprint der Seite (ersten 10 Zelltexte)
-        fingerprint = tuple(cell.text.strip() for cell in cells[:10])
+        fingerprint = get_fingerprint(cells)
         if fingerprint in seen_fingerprints:
             print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
             break
@@ -47,33 +68,29 @@ def extract_landingpage_data(driver, date_str: str):
                     "Quelle": row[1],
                     "Sitzungen": row[2],
                     "Aufrufe": row[3],
-                    "Aufrufe/Sitzung": row[4].replace(".", "").replace(",", ".")
+                    "Aufrufe pro Sitzung": row[4].replace(".", "").replace(",", ".")
                 }
                 data.append(entry)
                 row = []
 
-        # Versuch, zur nächsten Seite zu wechseln
         try:
-            prev_first_cell = cells[0].text.strip()
+            all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
+            target_table = all_tables[3]
+            next_btn = target_table.find_element(By.CSS_SELECTOR, ".pageForward")
 
-            next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
             if "disabled" in next_btn.get_attribute("class").lower():
                 print("✅ Letzte Seite erreicht.")
                 break
 
             driver.execute_script("arguments[0].click();", next_btn)
-
-            # Warte, bis sich Inhalt geändert hat
-            WebDriverWait(driver, 10).until(
-                lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell
-            )
+            wait_for_page_change(driver, fingerprint)
             time.sleep(5)
 
         except TimeoutException:
             print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
             break
-        except NoSuchElementException:
-            print("❌ Weiter-Button nicht gefunden – wahrscheinlich letzte Seite.")
+        except (NoSuchElementException, StaleElementReferenceException) as e:
+            print(f"❌ Weiter-Button-Fehler – wahrscheinlich letzte Seite: {e}")
             break
         except Exception as e:
             print(f"⚠️ Fehler beim Blättern: {e}")
@@ -81,7 +98,6 @@ def extract_landingpage_data(driver, date_str: str):
 
     print(f"✅ {len(data)} Datensätze insgesamt extrahiert.")
     return data
-
 
 
 # ========== Chrome Initialisierung ==========
@@ -99,31 +115,25 @@ def init_driver(url: str):
 
 if __name__ == '__main__':
     url = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
-    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/where_did_they_come_from.csv",
-                                headers=["Datum",
-                                        "EID",
-                                        "Quelle",
-                                        "Sitzungen",
-                                        "Aufrufe",
-                                        "Aufrufe pro Sitzung"]
-                                )
+    csv_handler = CSVFileHandler(
+        "../../Data/Scrapping data as csv/where_did_they_come_from.csv",
+        headers=["Datum", "EID", "Quelle", "Sitzungen", "Aufrufe", "Aufrufe pro Sitzung"]
+    )
+
     driver = init_driver(url)
     input("🔐 Bitte im geöffneten Fenster anmelden und zur Tabelle scrollen. Danach hier Enter drücken ...")
 
-    start_date = date(2025,6,19)
-    yesterday = date.today()
-    yesterday -= timedelta(days=1)
-    print (f"Anfangsdatum: {start_date}\nEnddatum: {yesterday}")
-    current_date = start_date
+    start_date = date(2023, 1, 1)
+    end_date = date.today() - timedelta(days=1)
+    print(f"📅 Zeitraum: {start_date} bis {end_date}")
 
-    while current_date <= yesterday:
+    current_date = start_date
+    while current_date <= end_date:
         print(f"\n📆 Datum wählen: {current_date}")
         try:
             select_date_range(driver, current_date, current_date)
             time.sleep(5)
-            date_str = current_date.isoformat()
-            table_data = extract_landingpage_data(driver, date_str)
-
+            table_data = extract_table_data(driver, current_date.isoformat())
             for row in table_data:
                 csv_handler.append_row(row)
         except Exception as e:
@@ -131,3 +141,4 @@ if __name__ == '__main__':
         current_date += timedelta(days=1)
 
     driver.quit()
+    print("✅ Alle Daten extrahiert und gespeichert.")
