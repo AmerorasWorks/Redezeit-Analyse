@@ -4,9 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from kalender_funktion import select_date_range
-from csv_manager import CSVFileHandler
+from Scripts.Dorian.utils.kalender_funktion import select_date_range
+from Scripts.Dorian.utils.csv_manager import CSVFileHandler
 
 
 # ========== Daten extrahieren ==========
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     driver = init_driver(url)
     input("🔐 Bitte im geöffneten Fenster anmelden und zur Tabelle scrollen. Danach hier Enter drücken ...")
 
-    start_date = date(2025, 6, 18)
+    start_date = date(2023, 1, 1)
     end_date = date.today() - timedelta(days=1)
     print(f"📅 Zeitraum: {start_date} bis {end_date}")
 
