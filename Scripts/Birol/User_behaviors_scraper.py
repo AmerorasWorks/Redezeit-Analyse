@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from Scripts.Dorian.csv_manager import CSVFileHandler
+from Scripts.Dorian.utils.csv_manager import CSVFileHandler
 
 # Braucht man um im Kalender den richtigen Monat zu picken (Wenn Webseite auf Deutsch ist)
 GERMAN_MONTHS = {
