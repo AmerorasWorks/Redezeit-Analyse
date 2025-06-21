@@ -4,10 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.common.exceptions import TimeoutException
-from Scripts.Dorian.utils.csv_manager import CSVFileHandler
-from Scripts.Dorian.utils.kalender_funktion import select_date_range
+from csv_manager import CSVFileHandler
+from kalender_funktion import select_date_range
 
 
 # ========== Tabellendaten scrapen ==========
@@ -19,40 +20,39 @@ def extract_table_data(driver, date_str: str):
 
     def get_cells():
         all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
-        last_table = all_tables[2]
+        last_table = all_tables[-1]
         return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
 
     while True:
         cells = get_cells()
         print(f"📦 {len(cells)} Zellen erkannt (Seite).")
 
-        # Fingerprint zur Schleifenvermeidung
+        # Fingerprint der Seite (ersten 10 Zelltexte)
         fingerprint = tuple(cell.text.strip() for cell in cells[:10])
         if fingerprint in seen_fingerprints:
             print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
             break
         seen_fingerprints.add(fingerprint)
 
-        # Zellen als Texte extrahieren
-        cells_texts = [cell.text.strip() for cell in cells]
-        rows = [cells_texts[i:i+5] for i in range(0, len(cells_texts), 5)]
-
-
-        for idx, row in enumerate(rows):
-            if len(row) != 5:
-                print(f"⚠️ Ungültige Zeile {idx}: {row}")
+        row = []
+        for cell in cells:
+            text = cell.text.strip()
+            if not text:
                 continue
-            entry = {
-                "Datum": date_str,
-                "EID": row[0],
-                "Quelle": row[1],
-                "Sitzungen": row[2],
-                "Aufrufe": row[3],
-                "Aufrufe pro Sitzung": row[4].replace(".", "").replace(",", ".")
-            }
-            data.append(entry)
+            row.append(text)
+            if len(row) == 5:
+                entry = {
+                    "Datum": date_str,
+                    "EID": row[0],
+                    "Name des Events": row[1],
+                    "event_label": row[2],
+                    "Aktive Nutzer": row[3].replace(".", "").replace(",", "."),
+                    "Ereignisanzahl": row[4].replace(".", "").replace(",", "."),
+                }
+                data.append(entry)
+                row = []
 
-        # Versuch, zur nächsten Seite zu blättern
+        # Versuch, zur nächsten Seite zu wechseln
         try:
             prev_first_cell_text = cells[0].text.strip()
 
@@ -63,12 +63,13 @@ def extract_table_data(driver, date_str: str):
 
             driver.execute_script("arguments[0].click();", next_btn)
 
+            # Warte auf neue Seite: cells[0] neu ermitteln, nicht stale!
             WebDriverWait(driver, 10).until(
                 lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell") and
                         d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell_text
             )
 
-            time.sleep(5)  # Warte auf Rendering
+            time.sleep(5)  # optional: kurz warten, bis Rendering fertig ist
 
         except TimeoutException:
             print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
@@ -100,19 +101,11 @@ def init_driver(url: str):
 
 if __name__ == '__main__':
     url = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
-    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/where_did_they_come_from.csv",
-                                headers=["Datum",
-                                        "EID",
-                                        "Quelle",
-                                        "Sitzungen",
-                                        "Aufrufe",
-                                        "Aufrufe pro Sitzung"
-                                        ]
-                                )
+    csv_handler = CSVFileHandler("../../Data/Scrapping data as csv/what_did_users_do2.csv", headers=["Datum", "EID", "Name des Events", "event_label", "Aktive Nutzer", "Ereignisanzahl"])
     driver = init_driver(url)
     input("🔐 Bitte im geöffneten Fenster anmelden und zur Tabelle scrollen. Danach hier Enter drücken ...")
 
-    start_date = date(2023,1,1)
+    start_date = date(2023,11,1)
     yesterday = date.today()
     yesterday -= timedelta(days=1)
     print (f"Anfangsdatum: {start_date}\nEnddatum: {yesterday}")
