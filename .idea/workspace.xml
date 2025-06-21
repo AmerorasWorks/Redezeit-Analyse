@@ -6,15 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Scrapping data as csv/what_did_users_do2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Birol/User_behaviors_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Birol/User_behaviors_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/Landingpage_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/02_Landingpage_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/User_behaviors_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/01_User_behaviors_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/What_did_users_do_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/04_What_did_users_do_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/03_Where_did_they_come_from_scraper(Vorbereitung für Samstag).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/csv_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/utils/csv_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/kalender_funktion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/utils/kalender_funktion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/finished scraper/Redezeit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/02_Landingpage_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/02_Landingpage_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/03_Where_did_they_come_from_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/03_Where_did_they_come_from_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/04_What_did_users_do_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/04_What_did_users_do_scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +48,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.03_Where_did_they_come_from_scraper.executor": "Run",
     "Python.Landingpage_scraper.executor": "Run",
     "Python.Redezeit_scraper.executor": "Run",
     "Python.Redezeit_tabelle2.executor": "Run",
@@ -166,5 +161,6 @@
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$Redezeit.coverage" NAME="Redezeit Coverage Results" MODIFIED="1749808497579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$crawl4ai.coverage" NAME="crawl4ai Coverage Results" MODIFIED="1750345323205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Where_did_they_come_from_scraper.coverage" NAME="Where_did_they_come_from_scraper Coverage Results" MODIFIED="1750442504536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/AI_WebScraper_py$03_Where_did_they_come_from_scraper.coverage" NAME="03_Where_did_they_come_from_scraper Coverage Results" MODIFIED="1750502891223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
   </component>
 </project>
