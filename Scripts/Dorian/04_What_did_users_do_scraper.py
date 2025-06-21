@@ -3,7 +3,6 @@ from datetime import date, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
@@ -24,66 +23,53 @@ def extract_table_data(driver, date_str: str):
         return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
 
     while True:
+        cells = get_cells()
+        print(f"📦 {len(cells)} Zellen erkannt (Seite).")
+
+        # Fingerprint der Seite (ersten 10 Zelltexte)
+        fingerprint = tuple(cell.text.strip() for cell in cells[:10])
+        if fingerprint in seen_fingerprints:
+            print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
+            break
+        seen_fingerprints.add(fingerprint)
+
+        row = []
+        for cell in cells:
+            text = cell.text.strip()
+            if not text:
+                continue
+            row.append(text)
+            if len(row) == 5:
+                entry = {
+                    "Datum": date_str,
+                    "EID": row[0],
+                    "Name des Events": row[1],
+                    "event_label": row[2],
+                    "Aktive Nutzer": row[3].replace(".", "").replace(",", "."),
+                    "Ereignisanzahl": row[4].replace(".", "").replace(",", "."),
+                }
+                data.append(entry)
+                row = []
+
+        # Versuch, zur nächsten Seite zu wechseln
         try:
-            cells = get_cells()
-            print(f"📦 {len(cells)} Zellen erkannt (Seite).")
-
-            # Fingerprint der Seite (ersten 10 Zelltexte)
-            fingerprint = tuple(cell.text.strip() for cell in cells[:10])
-            if fingerprint in seen_fingerprints:
-                print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
-                break
-            seen_fingerprints.add(fingerprint)
-
-            row = []
-            for cell in cells:
-                text = cell.text.strip()
-                if not text:
-                    continue
-                row.append(text)
-                if len(row) == 5:
-                    entry = {
-                        "Datum": date_str,
-                        "EID": row[0],
-                        "Name des Events": row[1],
-                        "event_label": row[2],
-                        "Aktive Nutzer": row[3].replace(".", "").replace(",", "."),
-                        "Ereignisanzahl": row[4].replace(".", "").replace(",", "."),
-                    }
-                    data.append(entry)
-                    row = []
-
             prev_first_cell_text = cells[0].text.strip()
 
-            # Button frisch holen
             next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
-
-            print("Weiter Button Klassen:", next_btn.get_attribute("class"))
-            print("Weiter Button sichtbar:", next_btn.is_displayed())
-            print("Weiter Button enabled:", next_btn.is_enabled())
-
             if "disabled" in next_btn.get_attribute("class").lower():
                 print("✅ Letzte Seite erreicht.")
                 break
 
-            # Scroll zum Button
-            driver.execute_script("arguments[0].scrollIntoView(true);", next_btn)
-            time.sleep(5)
-
-            # Klick per JavaScript
             driver.execute_script("arguments[0].click();", next_btn)
 
-            # Warte auf neuen DOM-Inhalt
+            # Warte auf neue Seite: cells[0] neu ermitteln, nicht stale!
             WebDriverWait(driver, 10).until(
-                lambda d: get_cells()[0].text.strip() != prev_first_cell_text
+                lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell") and
+                        d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell_text
             )
 
-            time.sleep(5)  # Sicherheitspuffer zum Rendern
+            time.sleep(5)  # optional: kurz warten, bis Rendering fertig ist
 
-        except StaleElementReferenceException:
-            print("♻️ DOM wurde neu geladen – versuche neu zu lesen ...")
-            time.sleep(2)
-            continue
         except TimeoutException:
             print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
             break
@@ -96,7 +82,6 @@ def extract_table_data(driver, date_str: str):
 
     print(f"✅ {len(data)} Datensätze insgesamt extrahiert.")
     return data
-
 
 
 

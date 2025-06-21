@@ -3,7 +3,6 @@ from datetime import date, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
@@ -24,77 +23,64 @@ def extract_landingpage_data(driver, date_str: str):
         return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
 
     while True:
-        try:
-            cells = get_cells()
-            print(f"📦 {len(cells)} Zellen erkannt (Seite).")
+        cells = get_cells()
+        print(f"📦 {len(cells)} Zellen erkannt (Seite).")
 
-            # Fingerprint der Seite (ersten 10 Zelltexte)
-            fingerprint = tuple(cell.text.strip() for cell in cells[:10])
-            if fingerprint in seen_fingerprints:
-                print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
-                break
-            seen_fingerprints.add(fingerprint)
-
-            row = []
-            for cell in cells:
-                text = cell.text.strip()
-                if not text:
-                    continue
-                row.append(text)
-                if len(row) == 3:
-                    entry = {
-                        "Datum": date_str,
-                        "EID": row[0],
-                        "Seitentitel": row[1],
-                        "Aufrufe": row[2].replace(".", "").replace(",", ".")
-                    }
-                    data.append(entry)
-                    row = []
-
-            prev_first_cell_text = cells[0].text.strip()
-
-            # Button frisch holen
-            next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
-
-            print("Weiter Button Klassen:", next_btn.get_attribute("class"))
-            print("Weiter Button sichtbar:", next_btn.is_displayed())
-            print("Weiter Button enabled:", next_btn.is_enabled())
-
-            if "disabled" in next_btn.get_attribute("class").lower():
-                print("✅ Letzte Seite erreicht.")
-                break
-
-            # Scroll zum Button
-            driver.execute_script("arguments[0].scrollIntoView(true);", next_btn)
-            time.sleep(5)
-
-            # Klick per JavaScript
-            driver.execute_script("arguments[0].click();", next_btn)
-
-            # Warte auf neuen DOM-Inhalt
-            WebDriverWait(driver, 10).until(
-                lambda d: get_cells()[0].text.strip() != prev_first_cell_text
-            )
-
-            time.sleep(5)  # Sicherheitspuffer zum Rendern
-
-        except StaleElementReferenceException:
-            print("♻️ DOM wurde neu geladen – versuche neu zu lesen ...")
-            time.sleep(5)
-            continue
-        except TimeoutException:
-            print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
+        # Fingerprint der Seite (ersten 10 Zelltexte)
+        fingerprint = tuple(cell.text.strip() for cell in cells[:10])
+        if fingerprint in seen_fingerprints:
+            print("🔁 Wiederholte Seite erkannt – Abbruch der Schleife.")
             break
-        except NoSuchElementException:
-            print("❌ Weiter-Button nicht gefunden – wahrscheinlich letzte Seite.")
-            break
-        except Exception as e:
-            print(f"⚠️ Fehler beim Blättern: {e}")
-            break
+        seen_fingerprints.add(fingerprint)
+
+        row = []
+        for cell in cells:
+            text = cell.text.strip()
+            if not text:
+                continue
+            row.append(text)
+            if len(row) == 3:
+                entry = {
+                    "Datum": date_str,
+                    "EID": row[0],
+                    "Seitentitel": row[1],
+                    "Aufrufe": row[2].replace(".", "").replace(",", ".")
+                }
+                data.append(entry)
+                row = []
+
+        # Versuch, zur nächsten Seite zu wechseln
+                # Versuch, zur nächsten Seite zu wechseln
+                try:
+                    prev_first_cell_text = cells[0].text.strip()
+
+                    next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
+                    if "disabled" in next_btn.get_attribute("class").lower():
+                        print("✅ Letzte Seite erreicht.")
+                        break
+
+                    driver.execute_script("arguments[0].click();", next_btn)
+
+                    # Warte auf neue Seite: cells[0] neu ermitteln, nicht stale!
+                    WebDriverWait(driver, 10).until(
+                        lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell") and
+                                d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell_text
+                    )
+
+                    time.sleep(5)  # optional: kurz warten, bis Rendering fertig ist
+
+                except TimeoutException:
+                    print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
+                    break
+                except NoSuchElementException:
+                    print("❌ Weiter-Button nicht gefunden – wahrscheinlich letzte Seite.")
+                    break
+                except Exception as e:
+                    print(f"⚠️ Fehler beim Blättern: {e}")
+                    break
 
     print(f"✅ {len(data)} Datensätze insgesamt extrahiert.")
     return data
-
 
 
 
