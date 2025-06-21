@@ -53,31 +53,34 @@ def extract_landingpage_data(driver, date_str: str):
                 row = []
 
         # Versuch, zur nächsten Seite zu wechseln
-        try:
-            prev_first_cell = cells[0].text.strip()
+                # Versuch, zur nächsten Seite zu wechseln
+                try:
+                    prev_first_cell_text = cells[0].text.strip()
 
-            next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
-            if "disabled" in next_btn.get_attribute("class").lower():
-                print("✅ Letzte Seite erreicht.")
-                break
+                    next_btn = driver.find_element(By.CSS_SELECTOR, ".pageForward")
+                    if "disabled" in next_btn.get_attribute("class").lower():
+                        print("✅ Letzte Seite erreicht.")
+                        break
 
-            driver.execute_script("arguments[0].click();", next_btn)
+                    driver.execute_script("arguments[0].click();", next_btn)
 
-            # Warte, bis sich Inhalt geändert hat
-            WebDriverWait(driver, 10).until(
-                lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell
-            )
-            time.sleep(5)
+                    # Warte auf neue Seite: cells[0] neu ermitteln, nicht stale!
+                    WebDriverWait(driver, 10).until(
+                        lambda d: d.find_elements(By.CSS_SELECTOR, "div.cell") and
+                                d.find_elements(By.CSS_SELECTOR, "div.cell")[0].text.strip() != prev_first_cell_text
+                    )
 
-        except TimeoutException:
-            print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
-            break
-        except NoSuchElementException:
-            print("❌ Weiter-Button nicht gefunden – wahrscheinlich letzte Seite.")
-            break
-        except Exception as e:
-            print(f"⚠️ Fehler beim Blättern: {e}")
-            break
+                    time.sleep(5)  # optional: kurz warten, bis Rendering fertig ist
+
+                except TimeoutException:
+                    print("⚠️ Timeout beim Seitenwechsel: Inhalt unverändert.")
+                    break
+                except NoSuchElementException:
+                    print("❌ Weiter-Button nicht gefunden – wahrscheinlich letzte Seite.")
+                    break
+                except Exception as e:
+                    print(f"⚠️ Fehler beim Blättern: {e}")
+                    break
 
     print(f"✅ {len(data)} Datensätze insgesamt extrahiert.")
     return data
