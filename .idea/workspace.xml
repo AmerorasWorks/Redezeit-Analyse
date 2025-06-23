@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/Analyse.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Dorian/Csv_to_Postgres_DB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/03_Where_did_they_come_from_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/03_Where_did_they_come_from_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/Dorian/04_What_did_users_do_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Dorian/04_What_did_users_do_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/exported_data/what_devices_used_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Scrapping data as csv/what_devices_used_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/exported_data/where_they_come_from_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Scrapping data as csv/where_new_visitors_come_from_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/exported_data/who_was_visiting_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Scrapping data as csv/who_was_visiting_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/what_devices_used_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/what_devices_used_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/where_they_come_from_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/where_new_visitors_come_from_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/who_was_visiting_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/who_was_visiting_chart.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -44,37 +52,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.02_Landingpage_scraper.executor": "Run",
-    "Python.03_Where_did_they_come_from_scraper(Vorbereitung für Samstag).executor": "Run",
-    "Python.03_Where_did_they_come_from_scraper.executor": "Run",
-    "Python.04_What_did_users_do_scraper.executor": "Run",
-    "Python.Landingpage_scraper.executor": "Run",
-    "Python.Redezeit_scraper.executor": "Run",
-    "Python.Redezeit_tabelle2.executor": "Run",
-    "Python.User_behaviors_scraper.executor": "Run",
-    "Python.What_did_users_do_scraper.executor": "Run",
-    "Python.Where_did_they_come_from_scraper(Vorbereitung für Samstag).executor": "Run",
-    "Python.Where_did_they_come_from_scraper.executor": "Run",
-    "Python.crawl4ai.executor": "Run",
-    "Python.lookerstudio_scraper.executor": "Run",
-    "Python.playwright.executor": "Run",
-    "Python.scraper_playwright.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Dorian__Rumspielen",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/Admin/Desktop/Bewerbung",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.02_Landingpage_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Where_did_they_come_from_scraper(Vorbereitung für Samstag).executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Where_did_they_come_from_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.04_What_did_users_do_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.All_csv_to_one.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Csv_to_Postgres_DB.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Landingpage_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Redezeit_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Redezeit_tabelle2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.User_behaviors_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.What_did_users_do_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Where_did_they_come_from_scraper(Vorbereitung für Samstag).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Where_did_they_come_from_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.crawl4ai.executor&quot;: &quot;Run&quot;,
+    &quot;Python.lookerstudio_scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.playwright.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scraper_playwright.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Dorian__Rumspielen&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Bewerbung&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
@@ -82,11 +98,11 @@
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\finished scraper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Data\Scrapping data as csv" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian\utils" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
       <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha" />
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Data\Scrapping data" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -125,6 +141,7 @@
       <workItem from="1750401301866" duration="28549000" />
       <workItem from="1750518580659" duration="22000" />
       <workItem from="1750519208422" duration="13860000" />
+      <workItem from="1750678774884" duration="7803000" />
     </task>
     <servers />
   </component>
@@ -152,6 +169,8 @@
     <SUITE FILE_PATH="coverage/parse_nardo_py$03_Where_did_they_come_from_scraper.coverage" NAME="03_Where_did_they_come_from_scraper Coverage Results" MODIFIED="1750549315724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_py$testscraper.coverage" NAME="testscraper Coverage Results" MODIFIED="1750068506945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$Redezeit_tabelle2.coverage" NAME="Redezeit_tabelle2 Coverage Results" MODIFIED="1750425080772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/parse_nardo_py$All_csv_to_one.coverage" NAME="All_csv_to_one Coverage Results" MODIFIED="1750667912593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
+    <SUITE FILE_PATH="coverage/parse_nardo_py$Csv_to_Postgres_DB.coverage" NAME="Csv_to_Postgres_DB Coverage Results" MODIFIED="1750680879120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$crawl4ai.coverage" NAME="crawl4ai Coverage Results" MODIFIED="1750345323205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />
     <SUITE FILE_PATH="coverage/Redezeit_Analyse$Redezeit.coverage" NAME="Redezeit Coverage Results" MODIFIED="1749808497579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AI_WebScraper_py$04_What_did_users_do_scraper.coverage" NAME="04_What_did_users_do_scraper Coverage Results" MODIFIED="1750516228545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Scripts/Dorian" />

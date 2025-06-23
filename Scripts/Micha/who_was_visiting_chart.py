@@ -65,7 +65,7 @@ def init_driver(url: str):
 if __name__ == '__main__':
     url = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"  # <-- Anpassen!
     csv_handler = CSVFileHandler(
-        "exported_data/who_was_visiting_chart.csv",
+        "../../Data/Scrapping data as csv/who_was_visiting_chart.csv",
         headers=["Datum",
                  "Kategorie",
                  "Wert"

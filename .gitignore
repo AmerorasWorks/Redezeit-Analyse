@@ -192,3 +192,23 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+.idea/workspace.xml
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q/schema/public.abK9xQ.meta
+.idea/workspace.xml
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q/schema/pg_catalog.0S1ZNQ.zip
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q/schema/information_schema.FNRwLQ.zip
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q.meta
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963.xml
+.idea/workspace.xml
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q/schema/information_schema.FNRwLQ.meta
+.idea/dataSources/008d5d99-f9f9-4f0b-ae9d-3037caf95069/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta
+.idea/dataSources/008d5d99-f9f9-4f0b-ae9d-3037caf95069/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta
+.idea/dataSources/008d5d99-f9f9-4f0b-ae9d-3037caf95069/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta
+.idea/dataSources/008d5d99-f9f9-4f0b-ae9d-3037caf95069/storage_v2/_src_/database/postgres.edMnLQ.meta
+.idea/dataSources/008d5d99-f9f9-4f0b-ae9d-3037caf95069.xml
+.idea/dataSources/ae63fc61-3274-4318-9f85-230d6d3f2963/storage_v2/_src_/database/redezeit.ij2I0Q/schema/pg_catalog.0S1ZNQ.meta
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/workspace.xml
+.idea/workspace.xml
+.idea/dataSources.xml
