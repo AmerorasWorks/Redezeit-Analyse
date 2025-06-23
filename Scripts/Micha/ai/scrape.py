@@ -117,7 +117,7 @@ def select_date_range(driver, start: date, end: date):
 def scrape_website(website):
     print("Launching Chrome Browser.....")
 
-    chrome_driver_path = "./chromedriver.exe"
+    chrome_driver_path = "../chromedriver.exe"
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
     driver.maximize_window()
