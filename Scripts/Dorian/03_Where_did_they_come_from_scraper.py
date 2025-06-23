@@ -16,18 +16,38 @@ def extract_table_data(driver, date_str: str):
     data = []
     seen_fingerprints = set()
 
+    def get_tables():
+        # Versuche mehrfach, Tabellen stabil zu holen
+        for _ in range(5):
+            try:
+                tables = driver.find_elements(By.CSS_SELECTOR, ".table")
+                if len(tables) < 4:
+                    raise Exception("❌ Erwartete Tabelle (Index 3) nicht gefunden.")
+                return tables
+            except StaleElementReferenceException:
+                time.sleep(5)
+        raise Exception("❌ Tabellen konnten nicht stabil geladen werden.")
+
     def get_cells():
-        all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
-        if len(all_tables) < 3:
-            raise Exception("❌ Erwartete Tabelle (Index 2) nicht gefunden.")
-        last_table = all_tables[3]
-        return last_table.find_elements(By.CSS_SELECTOR, "div.cell")
+        # Nutzt get_tables für stabilen Zugriff
+        tables = get_tables()
+        last_table = tables[3]
+        for _ in range(5):
+            try:
+                cells = last_table.find_elements(By.CSS_SELECTOR, "div.cell")
+                return cells
+            except StaleElementReferenceException:
+                time.sleep(5)
+                tables = get_tables()  # nochmal komplette Tabellen neu holen
+                last_table = tables[3]
+        raise Exception("❌ Zellen konnten nicht stabil geladen werden.")
 
     def get_fingerprint(cells):
+        # Fingerprint zur Seitenerkennung (erst 10 Zellen)
         return tuple(cell.text.strip() for cell in cells[:10])
 
-    def wait_for_page_change(driver, old_fingerprint):
-        wait = WebDriverWait(driver, 10)
+    def wait_for_page_change(driver, old_fingerprint, timeout=10):
+        wait = WebDriverWait(driver, timeout)
 
         def changed(d):
             try:
@@ -56,8 +76,18 @@ def extract_table_data(driver, date_str: str):
         seen_fingerprints.add(fingerprint)
 
         row = []
-        for cell in cells:
-            text = cell.text.strip()
+        for i in range(len(cells)):
+            # Hole Zellen-Text in robustem try-except mit Neuversuchen
+            for attempt in range(5):
+                try:
+                    current_cells = get_cells()
+                    text = current_cells[i].text.strip()
+                    break
+                except StaleElementReferenceException:
+                    time.sleep(5)
+                    if attempt == 4:
+                        print("❌ StaleElementReferenceException: Zelle konnte nicht stabil gelesen werden.")
+                        text = ""
             if not text:
                 continue
             row.append(text)
@@ -73,16 +103,41 @@ def extract_table_data(driver, date_str: str):
                 data.append(entry)
                 row = []
 
+        # Robust zum Weiter-Button und Seitenwechsel:
         try:
-            all_tables = driver.find_elements(By.CSS_SELECTOR, ".table")
-            target_table = all_tables[3]
-            next_btn = target_table.find_element(By.CSS_SELECTOR, ".pageForward")
+            tables = get_tables()
+            target_table = tables[3]
+
+            # Button mehrfach versuchen zu holen und klicken
+            next_btn = None
+            for _ in range(5):
+                try:
+                    next_btn = target_table.find_element(By.CSS_SELECTOR, ".pageForward")
+                    break
+                except StaleElementReferenceException:
+                    time.sleep(5)
+                    tables = get_tables()
+                    target_table = tables[3]
+
+            if next_btn is None:
+                print("❌ Weiter-Button nicht gefunden, Ende der Seiten.")
+                break
 
             if "disabled" in next_btn.get_attribute("class").lower():
                 print("✅ Letzte Seite erreicht.")
                 break
 
-            driver.execute_script("arguments[0].click();", next_btn)
+            # Klick robust per execute_script mit Wiederholung
+            for _ in range(3):
+                try:
+                    driver.execute_script("arguments[0].click();", next_btn)
+                    break
+                except StaleElementReferenceException:
+                    time.sleep(5)
+                    tables = get_tables()
+                    target_table = tables[3]
+                    next_btn = target_table.find_element(By.CSS_SELECTOR, ".pageForward")
+
             wait_for_page_change(driver, fingerprint)
             time.sleep(5)
 
@@ -98,6 +153,8 @@ def extract_table_data(driver, date_str: str):
 
     print(f"✅ {len(data)} Datensätze insgesamt extrahiert.")
     return data
+
+
 
 
 # ========== Chrome Initialisierung ==========
