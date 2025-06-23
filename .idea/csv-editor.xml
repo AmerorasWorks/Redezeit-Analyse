@@ -3,6 +3,27 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Users\Admin\OneDrive\Desktop\Micha\exported_data\what_devices_used_chart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\Admin\OneDrive\Desktop\Micha\exported_data\where_they_come_from_chart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\Admin\OneDrive\Desktop\Micha\exported_data\who_was_visiting_chart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Scripts\Micha\exported_data\parsed_result_20250618-104717.csv">
           <value>
             <Attribute>
