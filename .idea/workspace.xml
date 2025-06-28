@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="" />
+    <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/landingpage_scraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/rzws.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/user_behaviors_scraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/utils/csv_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/utils/kalender_funktion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/what_did_users_do_scraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/Micha/where_did_they_come_from_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/what_devices_used_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/what_devices_used_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/where_they_come_from_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/where_new_visitors_come_from_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Micha/who_was_visiting_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Micha/who_was_visiting_chart.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,9 +75,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dorian__Rumspielen&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;31-build-webscraping-tool-for-weekly-data-extraction&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/Bewerbung&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive/Dokumente/DataCraft/DataAnalyst_Aug.24/REDEZEIT/Redezeit-Analyse/Scripts/Micha&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -73,23 +87,24 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\finished scraper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian\utils" />
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Birol" />
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian" />
       <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha" />
-      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Data\Scrapping data" />
+      <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha\utils" />
+      <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha\cookies" />
+      <recent name="C:\Users\Admin\OneDrive\Dokumente\DataCraft\DataAnalyst_Aug.24\REDEZEIT\Redezeit-Analyse\Scripts\Micha\scraper" />
+      <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian\utils" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.26574.90" />
-        <option value="bundled-python-sdk-c1fac28bca04-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.26574.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
       </set>
     </attachedChunks>
   </component>
@@ -121,6 +136,10 @@
       <workItem from="1750401301866" duration="28549000" />
       <workItem from="1750518580659" duration="22000" />
       <workItem from="1750519208422" duration="13860000" />
+      <workItem from="1751009312062" duration="4932000" />
+      <workItem from="1751014305596" duration="3361000" />
+      <workItem from="1751101137230" duration="176000" />
+      <workItem from="1751108915738" duration="34000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnPaste": false,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "zenMode.hideLineNumbers": false,
+    "python.analysis.extraPaths": [
+        "./dev/src/scraper",
+        "./src/scraper"
+    ]
+}

@@ -1,12 +1,13 @@
 streamlit~=1.43.1
-langchain
-langchain_ollama
-selenium~=4.1.0
+selenium~=4.21.0
 beautifulsoup4~=4.13.3
-lxml
-html5lib
-python-dotenv
-pandas~=2.2.3
-ollama~=0.5.1
+lxml~=5.2.1
+html5lib~=1.1
+python-dotenv~=1.0.1
+pandas~=2.2.2
+pillow~=11.3.0
+easyocr~=1.7.1
+
+# Optional/experimentell:
+langchainlangchain_ollamaollama~=0.5.1
 langchain-core~=0.3.65
-pillow~=11.1.0
