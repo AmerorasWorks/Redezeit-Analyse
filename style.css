@@ -1,0 +1,84 @@
+/* === Hintergrund für ganze App über den Main-Container === */
+.stApp {
+    background: linear-gradient(135deg, #19ca22 0%, #f4f6f4 100%) !important;
+    min-height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Überschriften (Headers) in grün === */
+h1, h2, h3, h4, h5, h6 {
+    color: #090909 !important;
+    font-weight: 700;
+}
+
+/* === Buttons Styling === */
+button {
+    background-color: #262730 !important; /* Mittelgrün */
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 12px 28px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+/* Hover-Effekt für Buttons */
+button:hover {
+    background-color: #2BCE33!important; /* Dunkleres Grün beim Hover */
+}
+
+/* === Custom Info-Box wie st.info() === */
+.custom-info {
+    background: linear-gradient(135deg, #c7d6c8 0%, #19ca22 100%) !important; /* Mittelgrün */
+    color: #020303;             /* dunkles Grün für Text */
+    padding: 1rem;
+    border-left: 5px solid #c53316; /* typischer Google-grün-Ton */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* === Warnungen Styling === */
+.stWarning {
+    background-color: #f8e7e7 !important; /* Helles Rot/Weiß */
+    border-left: 6px solid #d9534f !important; /* Rot */
+    color: #a94442 !important;
+}
+
+/* === Fehler Styling === */
+.stError {
+    background-color: #f4d6d7 !important; /* Helles Rot */
+    border-left: 6px solid #d43f3a !important; /* Dunkelrot */
+    color: #a94442 !important;
+}
+
+/* === Tabellen Kopfzeile === */
+thead tr th {
+    background-color: #3a8d4f !important;
+    color: white !important;
+}
+
+/* === Tabellen-Zeilen-Hover === */
+tbody tr:hover {
+    background-color: #a8d5ba !important;
+}
+
+/* === Scrollbar Styling für bessere Optik === */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #d9f0e1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3a8d4f;
+    border-radius: 10px;
+    border: 2px solid #d9f0e1;
+}
