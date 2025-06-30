@@ -7,7 +7,3 @@ python-dotenv~=1.0.1
 pandas~=2.2.2
 pillow~=11.3.0
 easyocr~=1.7.1
-
-# Optional/experimentell:
-langchainlangchain_ollamaollama~=0.5.1
-langchain-core~=0.3.65
