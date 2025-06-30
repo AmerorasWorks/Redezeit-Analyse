@@ -4,9 +4,12 @@ import pickle
 import os
 import sys
 import time
-
+import csv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+
+# Log-Datei für bereits gescrapte Daten
+SCRAPE_LOG_PATH = os.path.join("src", "Data", "log", "scrape_log.csv")
 
 # Lokale Tools (du musst sicherstellen, dass diese Module im selben Ordner liegen oder per sys.path importierbar sind)
 sys.path.append(os.path.dirname(__file__))
@@ -37,6 +40,38 @@ from src.scraper.who_was_visiting_chart import (
 
 COOKIE_PATH = "src\cookies\cookies.pkl"
 URL = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
+
+
+def is_date_scraped(scrape_date: date) -> bool:
+    """
+    Prüft, ob 'scrape_date' bereits in SCRAPE_LOG_PATH geloggt wurde.
+    Verhindert Doppel-Scrapes – niemand mag Repeat-Dates! 😄
+    """
+    if not os.path.exists(SCRAPE_LOG_PATH):
+        return False
+
+    with open(SCRAPE_LOG_PATH, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader, None)  # Header überspringen
+        for row in reader:
+            if row and row[0] == scrape_date.isoformat():
+                return True
+    return False
+
+
+def log_scraped_date(scrape_date: date) -> None:
+    """
+    Loggt 'scrape_date' ans Ende von SCRAPE_LOG_PATH.
+    Legt Ordner und Datei bei Bedarf an – Out-of-the-box ready!
+    """
+    os.makedirs(os.path.dirname(SCRAPE_LOG_PATH), exist_ok=True)
+    file_exists = os.path.exists(SCRAPE_LOG_PATH)
+
+    with open(SCRAPE_LOG_PATH, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            writer.writerow(["Datum"])  # Header anlegen
+        writer.writerow([scrape_date.isoformat()])
 
 
 # === Initialisiere Chrome mit gespeicherten CookiesCookies ===
@@ -84,7 +119,12 @@ def run_all_scraper(start_date, end_date):
 
     current = start_date
     while current <= end_date:
-        st.write(f"\n📆 Scraping für {current}")
+        if is_date_scraped(current):
+            st.info(f"📅 {current.isoformat()} schon gescrapt – überspringe.")
+            current += timedelta(days=1)
+            continue
+
+        st.write(f"\n📆 Scraping für {current.isoformat()}")
         try:
             select_date_range(driver, current, current)
             time.sleep(8)
@@ -165,7 +205,12 @@ def run_all_scraper(start_date, end_date):
 
         except Exception as e:
             st.error(f"❌ Fehler am {current}: {e}")
-        current += timedelta(days=1)
+        else:
+            # 2) Erfolgreiches Scrapen loggen
+            log_scraped_date(current)
+            st.success(f"✅ {current.isoformat()} geloggt.")
+        finally:
+            current += timedelta(days=1)
 
     driver.quit()
     st.success("✅ Alle Scraper erfolgreich abgeschlossen!")
