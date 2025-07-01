@@ -15,7 +15,7 @@ SCRAPE_LOG_PATH = os.path.join("src", "Data", "log", "scrape_log.csv")
 sys.path.append(os.path.dirname(__file__))
 
 from src.utils.kalender_funktion import select_date_range
-from src.utils.csv_manager_2 import CSVFileHandler
+from src.utils.csv_manager import CSVFileHandler
 
 # Importiere alle Scraper-Funktionen
 from src.scraper.landingpage_scraper import (
