@@ -4,19 +4,26 @@ from typing import List, Dict, Union
 
 
 class CSVFileHandler:
-    def __init__(self, file_path: str, headers=None):
+    def __init__(self,
+                 file_path: str,
+                 headers: List[str] = None,
+                 delimiter: str = ';'):
+        """
+        file_path  — where to write
+        headers    — optional list of column names (writes header if file empty)
+        delimiter  — character to separate fields on write (default ';')
+        """
         self.file_path = file_path
-        self.headers = headers
+        self.headers   = headers
+        self.delimiter = delimiter
 
-        # If headers are provided, check whether to write them
-        if headers:
-            file_missing = not os.path.exists(file_path)  # Check if file exists
-            file_empty = file_missing or os.path.getsize(file_path) == 0  # Check if file is empty
-            if file_empty:
-                # Create file and write headers if file is missing or empty
-                with open(self.file_path, mode='w', newline='', encoding='utf-8-sig') as f:
-                    writer = csv.writer(f)
-                    writer.writerow(self.headers)
+        # Only write headers if file is missing or zero‐length
+        file_missing = not os.path.exists(file_path)
+        file_empty   = file_missing or os.path.getsize(file_path) == 0
+        if headers and file_empty:
+            with open(file_path, mode='w', newline='', encoding='utf-8-sig') as f:
+                writer = csv.writer(f, delimiter=self.delimiter)
+                writer.writerow(self.headers)
 
     def row_exists(self, row: Union[List, Dict]) -> bool:
         """
@@ -43,34 +50,39 @@ class CSVFileHandler:
                         return True
         return False
 
-    def append_row(self, row: Union[List, Dict], check_duplicate=True):
+    def append_row(self, row: Union[List, Dict], check_duplicate: bool = True):
         """
-        Append a row to the CSV file. If check_duplicate is True, skip row if it already exists.
-        Ensures that the file ends with a newline before appending.
+        Append a row to the CSV file.
+        - Ensures the file ends with a newline before appending.
+        - Optionally skips if row already exists.
+        - Writes fields using self.delimiter (semicolon).
         """
-        # Ensure the file ends with a newline character to prevent merging with the last row
+        # 1) Skip duplicate if asked
+        if check_duplicate and self.row_exists(row):
+            return
+
+        # 2) Ensure the file ends with a newline
         if os.path.exists(self.file_path):
             try:
                 with open(self.file_path, mode='rb+') as f:
-                    f.seek(-1, os.SEEK_END)  # Move to the last byte of the file
+                    f.seek(-1, os.SEEK_END)
                     last_char = f.read(1)
                     if last_char not in (b'\n', b'\r'):
-                        f.write(b'\n')  # Add newline if not present
+                        f.write(b'\n')
             except OSError:
-                # File might be empty or too small to seek; ignore
                 pass
 
-        if check_duplicate and self.row_exists(row):
-            return  # Skip duplicate
+        # 3) Append the row
+        with open(self.file_path, mode='a', newline='', encoding='utf-8-sig') as f:
+            if isinstance(row, dict):
+                if not self.headers:
+                    raise ValueError("Ohne header kannst du keine Dictionary nutzen.")
+                writer = csv.DictWriter(
+                    f,
+                    fieldnames=self.headers,
+                    delimiter=self.delimiter
+                )
+            else:
+                writer = csv.writer(f, delimiter=self.delimiter)
 
-        # Append row in appropriate format (dict or list)
-        if isinstance(row, dict):
-            if not self.headers:
-                raise ValueError("Ohne header kannst du keine Dictionary nutzen.")
-            with open(self.file_path, mode='a', newline='', encoding='utf-8-sig') as f:
-                writer = csv.DictWriter(f, fieldnames=self.headers)
-                writer.writerow(row)
-        else:
-            with open(self.file_path, mode='a', newline='', encoding='utf-8-sig') as f:
-                writer = csv.writer(f)
-                writer.writerow(row)
+            writer.writerow(row)

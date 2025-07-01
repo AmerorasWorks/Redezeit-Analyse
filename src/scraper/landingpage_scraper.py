@@ -75,10 +75,10 @@ def extract_table_data(driver, date_str: str):
             row.append(text)
             if len(row) == 3:
                 entry = {
-                    "Datum": date_str,
-                    "EID": row[0],
-                    "Seitentitel": row[1],
-                    "Aufrufe": row[2],
+                    "datum": date_str,
+                    "eid": row[0],
+                    "seitentitel": row[1],
+                    "aufrufe": row[2],
                 }
                 data.append(entry)
                 row = []

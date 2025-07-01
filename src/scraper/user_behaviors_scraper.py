@@ -32,12 +32,12 @@ def extract_user_behaviour(driver, date_obj: date) -> dict | None:
         print(f"📊 Daten extrahiert für {date_obj}")
 
         return {
-            "Datum": date_obj.isoformat(),
-            "Seitenaufrufe": value_labels[0].text,
-            "Nutzer Insgesamt": value_labels[1].text,
-            "Durchschn. Zeit auf der Seite": value_labels[2].text,
-            "Absprungrate": value_labels[3].text.replace(",", ".").replace(" ", ""),
-            "Seiten / Sitzung": value_labels[4].text.replace(",", "."),
+            "datum": date_obj.isoformat(),
+            "seitenaufrufe": value_labels[0].text,
+            "nutzer insgesamt": value_labels[1].text,
+            "durchschn. zeit auf der seite": value_labels[2].text,
+            "absprungrate": value_labels[3].text.replace(",", ".").replace(" ", ""),
+            "seiten / sitzung": value_labels[4].text.replace(",", "."),
         }
 
     except TimeoutException:
@@ -72,12 +72,12 @@ if __name__ == "__main__":
     csv_handler = CSVFileHandler(
         "../../Data/Scrapping data as csv/user_behaviors.csv",
         headers=[
-            "Datum",
-            "Seitenaufrufe",
-            "Nutzer Insgesamt",
-            "Durchschn. Zeit auf der Seite",
-            "Absprungrate",
-            "Seiten / Sitzung",
+            "datum",
+            "seitenaufrufe",
+            "nutzer insgesamt",
+            "durchschn. zeit auf der seite",
+            "absprungrate",
+            "seiten / sitzung",
         ],
     )
 
