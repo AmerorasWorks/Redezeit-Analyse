@@ -49,9 +49,9 @@ def extract_table_for_piechart_gviz(driver, date_str):
             continue
         data.append(
             {
-                "Datum": date_str,
-                "Kategorie": tds[0].text.strip(),
-                "Wert": tds[1].text.strip(),
+                "datum": date_str,
+                "kategorie": tds[0].text.strip(),
+                "wert": tds[1].text.strip(),
             }
         )
     print(f"✅ {len(data)} Zeilen aus Where_They_Come_From-Chart extrahiert.")

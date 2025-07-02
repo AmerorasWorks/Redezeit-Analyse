@@ -75,12 +75,12 @@ def extract_table_data(driver, date_str: str):
             row.append(text)
             if len(row) == 5:
                 entry = {
-                    "Datum": date_str,
-                    "EID": row[0],
-                    "Name des Events": row[1],
-                    "even_label": row[2],
-                    "Aktive Nutzer": row[3],
-                    "Ereignisanzahl": row[4],
+                    "datum": date_str,
+                    "eid": row[0],
+                    "name des events": row[1],
+                    "event_label": row[2],
+                    "aktive nutzer": row[3],
+                    "ereignisanzahl": row[4],
                 }
                 data.append(entry)
                 row = []

@@ -100,12 +100,12 @@ def extract_table_data(driver, date_str: str):
             row.append(text)
             if len(row) == 5:
                 entry = {
-                    "Datum": date_str,
-                    "EID": row[0],
-                    "Quelle": row[1],
-                    "Sitzungen": row[2],
-                    "Aufrufe": row[3],
-                    "Aufrufe pro Sitzung": row[4].replace(".", "").replace(",", "."),
+                    "datum": date_str,
+                    "eid": row[0],
+                    "quelle": row[1],
+                    "sitzungen": row[2],
+                    "aufrufe": row[3],
+                    "aufrufe pro sitzung": row[4].replace(".", "").replace(",", "."),
                 }
                 data.append(entry)
                 row = []
@@ -185,12 +185,12 @@ if __name__ == "__main__":
     csv_handler = CSVFileHandler(
         "../../Data/Scrapping data as csv/where_did_they_come_from.csv",
         headers=[
-            "Datum",
-            "EID",
-            "Quelle",
-            "Sitzungen",
-            "Aufrufe",
-            "Aufrufe pro Sitzung",
+            "datum",
+            "eid",
+            "quelle",
+            "sitzungen",
+            "aufrufe",
+            "aufrufe pro sitzung",
         ],
     )
 
