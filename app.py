@@ -90,6 +90,36 @@ def log_scraped_date(scrape_date: date) -> None:
         writer.writerow([scrape_date.isoformat()])
 
 
+if "log_messages" not in st.session_state:
+    st.session_state.log_messages = []
+
+
+def log(message: str, level: str = "info") -> None:
+    from datetime import datetime
+
+    colors = {
+        "info": "#000000",
+        "warning": "#7b4b02",
+        "error": "#600a0a",
+        "success": "#000000",
+    }
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    color = colors.get(level, "#000000")
+    styled_message = f'<div style="color: {color}; font-family: monospace;">[{timestamp}] {message}</div>'
+    st.session_state.log_messages.append(styled_message)
+
+
+def show_log(container):
+    container.markdown(
+        f"""
+        <div id="log-container">
+        {"".join(st.session_state.log_messages)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 # === Initialisiere Chrome mit gespeicherten CookiesCookies ===
 def init_driver_with_cookies():
     # Bundled chromedriver.exe finden
@@ -127,27 +157,29 @@ def save_cookies(driver):
 
 
 # === Alle Scraper ausführen ===
-def run_all_scraper(start_date, end_date):
+def run_all_scraper(start_date, end_date, log_container=None):
     driver = init_driver_with_cookies()
 
-    # Ordner für Kalenderwoche erstellen
-    year, kw, _ = start_date.isocalendar()
+    # year, kw, _ = start_date.isocalendar()
     output_folder = os.path.join("src", "Data")
     os.makedirs(output_folder, exist_ok=True)
 
     current = start_date
     while current <= end_date:
         if is_date_scraped(current):
-            st.info(f"📅 {current.isoformat()} schon gescrapt – überspringe.")
+            log(f"📅 {current.isoformat()} schon gescrapt – überspringe.", "info")
+            if log_container:
+                show_log(log_container)
             current += timedelta(days=1)
             continue
 
-        st.write(f"\n📆 Scraping für {current.isoformat()}")
+        log(f"\n📆 Scraping für {current.isoformat()}", "info")
+        if log_container:
+            show_log(log_container)
         try:
             select_date_range(driver, current, current)
             time.sleep(8)
 
-            # Landingpage
             data = extract_landingpage_data(driver, current.isoformat())
             lp_csv = CSVFileHandler(
                 os.path.join(output_folder, f"landingpage.csv"),
@@ -156,7 +188,6 @@ def run_all_scraper(start_date, end_date):
             for row in data:
                 lp_csv.append_row(row)
 
-            # User Behaviour
             row = extract_user_behaviour(driver, current)
             if row:
                 ub_csv = CSVFileHandler(
@@ -172,7 +203,6 @@ def run_all_scraper(start_date, end_date):
                 )
                 ub_csv.append_row(row)
 
-            # Events
             data = extract_events_data(driver, current.isoformat())
             ev_csv = CSVFileHandler(
                 os.path.join(output_folder, f"what_did_user_do.csv"),
@@ -188,7 +218,6 @@ def run_all_scraper(start_date, end_date):
             for row in data:
                 ev_csv.append_row(row)
 
-            # Quellen Tabelle
             data = extract_sources_data(driver, current.isoformat())
             src_csv = CSVFileHandler(
                 os.path.join(output_folder, f"where_did_they_come_from.csv"),
@@ -204,7 +233,6 @@ def run_all_scraper(start_date, end_date):
             for row in data:
                 src_csv.append_row(row)
 
-            # Piecharts:
             for label, func in zip(
                 [
                     "where_new_visitors_come_from_chart",
@@ -222,16 +250,33 @@ def run_all_scraper(start_date, end_date):
                     pie_csv.append_row(row)
 
         except Exception as e:
-            st.error(f"❌ Fehler am {current}: {e}")
+            log(f"❌ Fehler am {current}: {e}", "error")
+            if log_container:
+                show_log(log_container)
         else:
-            # 2) Erfolgreiches Scrapen loggen
             log_scraped_date(current)
-            st.success(f"✅ {current.isoformat()} geloggt.")
+            log(f"✅ {current.isoformat()} geloggt.", "success")
+            if log_container:
+                show_log(log_container)
         finally:
             current += timedelta(days=1)
 
     driver.quit()
-    st.success("✅ Alle Scraper erfolgreich abgeschlossen!")
+    log("✅ Alle Scraper erfolgreich abgeschlossen!", "success")
+    if log_container:
+        show_log(log_container)
+
+
+# Log-Fenster-Funktion angepasst, kein inline style mehr
+def show_log(container):
+    container.markdown(
+        f"""
+        <div id="log-container">
+        {"".join(st.session_state.log_messages)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 # Load CSS file
@@ -243,36 +288,73 @@ def main():
     # === CSS hier ganz oben laden ===
     load_custom_css("style.css")
 
-    st.header("scrapetime")
-    st.subheader("Willkommen beim Redezeit-Scraping-Tool!")
-    st.text(
-        "Hier kannst du Daten vom Redezeit-Dashboard extrahieren und in CSV-Dateien speichern. \n"
-        "Bitte beachte, dass du dich einmalig bei Google anmelden musst, um die Cookies zu speichern. \n"
-        "Danach kannst du die Scraper für einen bestimmten Zeitraum ausführen."
+    st.markdown(
+        """
+    <style>
+        header {visibility: hidden;}
+    </style>
+
+    <div class="custom-header">
+        <div class="title"><h1>scrapetime</h1></div>
+    </div>
+    """,
+        unsafe_allow_html=True,
     )
 
-    start_date = st.date_input("Startdatum", date.today() - timedelta(days=7))
-    end_date = st.date_input("Enddatum", date.today() - timedelta(days=1))
+    st.markdown("<hr style='border:1px solid #004709;'>", unsafe_allow_html=True)
 
-    if st.button("🔄 Login & Cookies speichern (nur beim 1. anmelden notwendig!)"):
-        driver = webdriver.Chrome(service=Service(), options=webdriver.ChromeOptions())
-        chrome_path = resource_path("chromedriver.exe")
-        driver = webdriver.Chrome(
-            service=Service(executable_path=chrome_path),
-            options=webdriver.ChromeOptions(),
-        )
-        driver.get(URL)
-        st.info(
-            "🔐 Bitte im neuem Tab bei Google anmelden. Danach das Google-Tab schließen."
-        )
-        time.sleep(60)
-        save_cookies(driver)
-        driver.quit()
-        st.success("✅ Cookies erfolgreich gespeichert.")
+    st.subheader("Willkommen zum Redezeit-Scraping-Tool!")
+    st.markdown(
+        """
+        <div class="custom-info">
+            Hier kannst du Daten vom Redezeit-Dashboard extrahieren und in CSV-Dateien speichern.<br>
+            Bitte beachte, dass du dich einmalig bei Google anmelden musst, um die Cookies zu speichern.<br>
+            Danach kannst du die Scraper für einen bestimmten Zeitraum ausführen.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown("<hr style='border:1px solid #004709;'>", unsafe_allow_html=True)
 
-    if st.button("🚀 Alle Scraper ausführen!"):
-        run_all_scraper(start_date, end_date)
+    with st.container():
+        col1, col2, col3 = st.columns([1, 1, 1])
 
+        with col1:
+            start_date = st.date_input(
+                "Startdatum", date.today() - timedelta(days=7), key="start"
+            )
+            end_date = st.date_input(
+                "Enddatum", date.today() - timedelta(days=1), key="end"
+            )
+
+        with col2:
+            st.markdown("### 📜 Log-Fenster")
+            log_container = st.empty()
+
+        with col1:
+            if st.button("🔄 Einmaliger Login"):
+                driver = webdriver.Chrome(
+                    service=Service(), options=webdriver.ChromeOptions()
+                )
+                driver.get(URL)
+                log(
+                    "🔐 Bitte im neuen Tab bei Google anmelden. Danach das Google-Tab schließen.",
+                    "info",
+                )
+                time.sleep(60)
+                save_cookies(driver)
+                driver.quit()
+                log("✅ Cookies erfolgreich gespeichert.", "success")
+                show_log(log_container)  # Log aktualisieren NACH Aktion
+
+            if st.button("🚀 Scraper ausführen"):
+                run_all_scraper(start_date, end_date)
+                show_log(log_container)  # Log aktualisieren NACH Aktion
+                # Unsichtbarer minimaler Platzhalter (optional, falls du das brauchst)
+                st.markdown('<div id="log-placeholder"></div>', unsafe_allow_html=True)
+
+    # Logfenster **ganz unten** nur einmal rendern, initial leer
+    show_log(log_container)
 
 if __name__ == "__main__":
     try:
