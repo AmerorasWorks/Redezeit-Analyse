@@ -8,6 +8,21 @@ import csv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
+
+def resource_path(relative_path: str) -> str:
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
+def load_custom_css(relative_css_path: str):
+    css_file = resource_path(relative_css_path)
+    if not os.path.isfile(css_file):
+        st.error(f"CSS nicht gefunden: {css_file}")
+        return
+    with open(css_file, "r", encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
 # Log-Datei für bereits gescrapte Daten
 SCRAPE_LOG_PATH = os.path.join("src", "Data", "log", "scrape_log.csv")
 
@@ -38,7 +53,8 @@ from src.scraper.who_was_visiting_chart import (
     extract_table_for_piechart_gviz as extract_pie_visitors,
 )
 
-COOKIE_PATH = "src\cookies\cookies.pkl"
+
+COOKIE_PATH = resource_path("src/cookies/cookies.pkl")
 URL = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
 
 
@@ -76,10 +92,14 @@ def log_scraped_date(scrape_date: date) -> None:
 
 # === Initialisiere Chrome mit gespeicherten CookiesCookies ===
 def init_driver_with_cookies():
-    service = Service()
+    # Bundled chromedriver.exe finden
+    chrome_path = resource_path("chromedriver.exe")
+    service = Service(executable_path=chrome_path)
+
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(service=service, options=options)
+
     driver.get(URL)
 
     if os.path.exists(COOKIE_PATH):
@@ -93,9 +113,7 @@ def init_driver_with_cookies():
         driver.refresh()
         time.sleep(5)
     else:
-        st.warning(
-            "🔐 Bitte im geöffneten Fenster anmelden und dann den Scraping-Button klicken."
-        )
+        st.warning("🔐 Bitte anmelden und dann erneut klicken.")
         st.stop()
 
     return driver
@@ -114,7 +132,7 @@ def run_all_scraper(start_date, end_date):
 
     # Ordner für Kalenderwoche erstellen
     year, kw, _ = start_date.isocalendar()
-    output_folder = os.path.join("src\Data")
+    output_folder = os.path.join("src", "Data")
     os.makedirs(output_folder, exist_ok=True)
 
     current = start_date
@@ -216,29 +234,51 @@ def run_all_scraper(start_date, end_date):
     st.success("✅ Alle Scraper erfolgreich abgeschlossen!")
 
 
+# Load CSS file
+load_custom_css("style.css")
+
+
 # === Streamlit UI ===
-st.header("scrapetime")
-st.subheader("Willkommen zum Redezeit-Scraping-Tool!")
-st.info(
-    "Hier kannst du Daten vom Redezeit-Dashboard extrahieren und in CSV-Dateien speichern. \n"
-    "Bitte beachte, dass du dich einmalig bei Google anmelden musst, um die Cookies zu speichern. \n"
-    "Danach kannst du die Scraper für einen bestimmten Zeitraum ausführen."
-)
+def main():
+    # === CSS hier ganz oben laden ===
+    load_custom_css("style.css")
 
-
-start_date = st.date_input("Startdatum", date.today() - timedelta(days=7))
-end_date = st.date_input("Enddatum", date.today() - timedelta(days=1))
-
-if st.button("🔄 Login & Cookies speichern (nur 1x nötig)"):
-    driver = webdriver.Chrome(service=Service(), options=webdriver.ChromeOptions())
-    driver.get(URL)
-    st.info(
-        "🔐 Bitte im neuem Tab bei Google anmelden. Danach das Google-Tab schließen."
+    st.header("scrapetime")
+    st.subheader("Willkommen beim Redezeit-Scraping-Tool!")
+    st.text(
+        "Hier kannst du Daten vom Redezeit-Dashboard extrahieren und in CSV-Dateien speichern. \n"
+        "Bitte beachte, dass du dich einmalig bei Google anmelden musst, um die Cookies zu speichern. \n"
+        "Danach kannst du die Scraper für einen bestimmten Zeitraum ausführen."
     )
-    time.sleep(60)
-    save_cookies(driver)
-    driver.quit()
-    st.success("✅ Cookies erfolgreich gespeichert.")
 
-if st.button("🚀 Alle Scraper ausführen!"):
-    run_all_scraper(start_date, end_date)
+    start_date = st.date_input("Startdatum", date.today() - timedelta(days=7))
+    end_date = st.date_input("Enddatum", date.today() - timedelta(days=1))
+
+    if st.button("🔄 Login & Cookies speichern (nur beim 1. anmelden notwendig!)"):
+        driver = webdriver.Chrome(service=Service(), options=webdriver.ChromeOptions())
+        chrome_path = resource_path("chromedriver.exe")
+        driver = webdriver.Chrome(
+            service=Service(executable_path=chrome_path),
+            options=webdriver.ChromeOptions(),
+        )
+        driver.get(URL)
+        st.info(
+            "🔐 Bitte im neuem Tab bei Google anmelden. Danach das Google-Tab schließen."
+        )
+        time.sleep(60)
+        save_cookies(driver)
+        driver.quit()
+        st.success("✅ Cookies erfolgreich gespeichert.")
+
+    if st.button("🚀 Alle Scraper ausführen!"):
+        run_all_scraper(start_date, end_date)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        import traceback
+
+        traceback.print_exc()  # Stacktrace ausgeben
+        input("Drücke Enter, um zu beenden…")
