@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b39faf3-6a14-46b7-b852-aa8550fe0615" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/fastAPI.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cookies/cookies.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies/cookies.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/landingpage.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/landingpage.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/log/scrape_log.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/log/scrape_log.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/user_behaviors.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/user_behaviors.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/what_devices_used_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/what_devices_used_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/what_did_user_do.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/what_did_user_do.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/where_did_they_come_from.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/where_did_they_come_from.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/where_new_visitors_come_from_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/where_new_visitors_come_from_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/who_was_visiting_chart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/who_was_visiting_chart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Analyse.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Analyse.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Dorian__Dev",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/Admin/OneDrive/Dokumente/DataCraft/DataAnalyst_Aug.24/REDEZEIT/Redezeit-Analyse/Scripts/Micha",
     "node.js.detected.package.eslint": "true",
@@ -89,11 +101,41 @@
       <recent name="C:\Users\Admin\Desktop\Redezeit-Analyse\Scripts\Dorian\utils" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
-        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.26574.90" />
+        <option value="bundled-python-sdk-c1fac28bca04-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.26574.90" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +173,7 @@
       <workItem from="1751108915738" duration="34000" />
       <workItem from="1751269474716" duration="3000" />
       <workItem from="1751281253674" duration="22000" />
+      <workItem from="1751440588032" duration="424000" />
     </task>
     <servers />
   </component>

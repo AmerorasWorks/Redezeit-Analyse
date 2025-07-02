@@ -1,84 +1,86 @@
 /* === Hintergrund für ganze App über den Main-Container === */
 .stApp {
-    background: linear-gradient(135deg, #19ca22 0%, #f4f6f4 100%) !important;
-    min-height: 100vh;
-    padding: 0 !important;
-    margin: 0 !important;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #9CC317 20%, #e7f8ec 100%) !important;
 }
 
-/* === Überschriften (Headers) in grün === */
+
+/* === Überschriften (Headers) === */
 h1, h2, h3, h4, h5, h6 {
-    color: #090909 !important;
+    color: #004709 !important;
     font-weight: 700;
+}
+
+.custom-header {
+            background: linear-gradient(135deg, #e7f8ec 20%,#9CC317 100%) !important;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #000000;
+            border-radius: 0px 0px 12px 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .custom-header .title {
+            font-size: 1.6rem;
+            font-weight: 600;
 }
 
 /* === Buttons Styling === */
 button {
-    background-color: #262730 !important; /* Mittelgrün */
+    background-color: #262730 !important;
     color: white !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 12px 28px !important;
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
+    width: 160px !important;
     cursor: pointer !important;
-    transition: background-color 0.3s ease !important;
+    transition: background-color 0.8s ease !important;
 }
 
 /* Hover-Effekt für Buttons */
 button:hover {
-    background-color: #2BCE33!important; /* Dunkleres Grün beim Hover */
+    background-color: #9CC317!important; 
 }
 
-/* === Custom Info-Box wie st.info() === */
+/* === Custom Info-Box === */
 .custom-info {
-    background: linear-gradient(135deg, #c7d6c8 0%, #19ca22 100%) !important; /* Mittelgrün */
-    color: #020303;             /* dunkles Grün für Text */
+    background: linear-gradient(135deg, #e7f8ec 20%,#9CC317 100%) !important;
+    color: #020303;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);       
     padding: 1rem;
-    border-left: 5px solid #c53316; /* typischer Google-grün-Ton */
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #000000; 
+    border-radius: 12px;
 }
 
-/* === Warnungen Styling === */
-.stWarning {
-    background-color: #f8e7e7 !important; /* Helles Rot/Weiß */
-    border-left: 6px solid #d9534f !important; /* Rot */
-    color: #a94442 !important;
+/* === DateInput- Styling === */
+.stDateInput label {
+    color: #1a1a1a !important;
+}
+.stDateInput input {
+    color: #fbf4f4 !important;
+    text-align: center;
 }
 
-/* === Fehler Styling === */
-.stError {
-    background-color: #f4d6d7 !important; /* Helles Rot */
-    border-left: 6px solid #d43f3a !important; /* Dunkelrot */
-    color: #a94442 !important;
+.stDateInput {
+    cursor: pointer !important;
+    width: 160px!important;
 }
 
-/* === Tabellen Kopfzeile === */
-thead tr th {
-    background-color: #3a8d4f !important;
-    color: white !important;
+#log-container {
+    height: 200px;
+    width: 460px;
+    overflow-y: scroll;
+    border: 1px solid #0c0c0c;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f1f1ee 0%,#9CC317  100%) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);   
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
-/* === Tabellen-Zeilen-Hover === */
-tbody tr:hover {
-    background-color: #a8d5ba !important;
-}
-
-/* === Scrollbar Styling für bessere Optik === */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #d9f0e1;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #3a8d4f;
-    border-radius: 10px;
-    border: 2px solid #d9f0e1;
+/* Platzhalter unsichtbar, minimal groß, am Ende */
+#log-placeholder {
+    height: 1px !important;
+    width: 1px !important;
+    opacity: 0 !important;
+    position: relative;
+    margin-top: 20px; /* Abstand zum Log-Fenster */
 }
