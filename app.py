@@ -24,7 +24,7 @@ def load_custom_css(relative_css_path: str):
 
 
 # Log-Datei für bereits gescrapte Daten
-SCRAPE_LOG_PATH = os.path.join("src", "Data", "log", "scrape_log.csv")
+SCRAPE_LOG_PATH = os.path.join("src", "data", "log", "scrape_log.csv")
 
 # Lokale Tools (du musst sicherstellen, dass diese Module im selben Ordner liegen oder per sys.path importierbar sind)
 sys.path.append(os.path.dirname(__file__))
@@ -161,7 +161,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
     driver = init_driver_with_cookies()
 
     # year, kw, _ = start_date.isocalendar()
-    output_folder = os.path.join("src", "Data")
+    output_folder = os.path.join("src", "data", "raw")
     os.makedirs(output_folder, exist_ok=True)
 
     current = start_date
@@ -183,7 +183,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
             data = extract_landingpage_data(driver, current.isoformat())
             lp_csv = CSVFileHandler(
                 os.path.join(output_folder, f"landingpage.csv"),
-                headers=["Datum", "EID", "Seitentitel", "Aufrufe"],
+                headers=["datum", "eid", "seitentitel", "aufrufe"],
             )
             for row in data:
                 lp_csv.append_row(row)
@@ -193,12 +193,12 @@ def run_all_scraper(start_date, end_date, log_container=None):
                 ub_csv = CSVFileHandler(
                     os.path.join(output_folder, f"user_behaviors.csv"),
                     headers=[
-                        "Datum",
-                        "Seitenaufrufe",
-                        "Nutzer Insgesamt",
-                        "Durchschn. Zeit auf der Seite",
-                        "Absprungrate",
-                        "Seiten / Sitzung",
+                        "datum",
+                        "seitenaufrufe",
+                        "nutzer insgesamt",
+                        "durchschn. zeit auf der seite",
+                        "absprungrate",
+                        "seiten / sitzung",
                     ],
                 )
                 ub_csv.append_row(row)
@@ -207,12 +207,12 @@ def run_all_scraper(start_date, end_date, log_container=None):
             ev_csv = CSVFileHandler(
                 os.path.join(output_folder, f"what_did_user_do.csv"),
                 headers=[
-                    "Datum",
-                    "EID",
-                    "Name des Events",
-                    "even_label",
-                    "Aktive Nutzer",
-                    "Ereignisanzahl",
+                    "datum",
+                    "eid",
+                    "name des events",
+                    "event_label",
+                    "aktive nutzer",
+                    "ereignisanzahl",
                 ],
             )
             for row in data:
@@ -222,12 +222,12 @@ def run_all_scraper(start_date, end_date, log_container=None):
             src_csv = CSVFileHandler(
                 os.path.join(output_folder, f"where_did_they_come_from.csv"),
                 headers=[
-                    "Datum",
-                    "EID",
-                    "Quelle",
-                    "Sitzungen",
-                    "Aufrufe",
-                    "Aufrufe pro Sitzung",
+                    "datum",
+                    "eid",
+                    "quelle",
+                    "sitzungen",
+                    "aufrufe",
+                    "aufrufe pro sitzung",
                 ],
             )
             for row in data:
@@ -244,7 +244,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
                 pie_data = func(driver, current.isoformat())
                 pie_csv = CSVFileHandler(
                     os.path.join(output_folder, f"{label}.csv"),
-                    headers=["Datum", "Kategorie", "Wert"],
+                    headers=["datum", "kategorie", "wert"],
                 )
                 for row in pie_data:
                     pie_csv.append_row(row)
