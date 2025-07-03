@@ -1,4 +1,4 @@
-﻿datum;eid;quelle;sitzungen;aufrufe;aufrufe pro sitzung
+datum;eid;quelle;sitzungen;aufrufe;aufrufe_pro_sitzung
 2022-03-12;1.;(direct);1;51;51
 2022-03-12;2.;(not set);1;42;42
 2022-03-13;1.;(direct);2;9;4.5

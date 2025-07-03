@@ -1,4 +1,4 @@
-﻿datum;eid;name des events;event_label;aktive nutzer;ereignisanzahl
+datum;eid;name_des_events;event_label;aktive_nutzer;ereignisanzahl
 2023-09-28;1.;Checked;(not set);3;22
 2023-09-28;2.;Website;(not set);2;4
 2023-09-28;3.;Checked;Coming Out;2;5
