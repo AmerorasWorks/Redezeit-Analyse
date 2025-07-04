@@ -1,4 +1,4 @@
-﻿datum;kategorie;wert
+datum;kategorie;wert
 2022-03-12;desktop;93
 2022-03-13;desktop;9
 2022-03-14;desktop;610
@@ -2849,5 +2849,12 @@
 2025-06-30;desktop;46
 2025-06-30;mobile;41
 2025-06-30;tablet;1
-2025-07-01;desktop;37
-2025-07-01;mobile;22
+2025-07-01;desktop;52
+2025-07-01;mobile;34
+2025-07-01;tablet;1
+2025-07-02;mobile;22
+2025-07-02;desktop;18
+2025-07-02;tablet;3
+2025-07-03;mobile;31
+2025-07-03;desktop;27
+2025-07-03;tablet;2

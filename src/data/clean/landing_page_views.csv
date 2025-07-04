@@ -1,4 +1,4 @@
-﻿datum;eid;seitentitel;aufrufe
+datum;eid;seitentitel;aufrufe
 2022-03-12;1.;New Remix App;92
 2022-03-12;2.;Application Error!;1
 2022-03-13;1.;New Remix App;9
@@ -19158,17 +19158,54 @@
 2025-06-30;15.;Welcome | REDEZEIT FÜR DICH #virtualsupporttalks;1
 2025-06-30;16.;Über uns | REDEZEIT FÜR DICH #virtualsupporttalks;1
 2025-06-30;17.;Wichtige Nummern und Anlaufstellen | REDEZEIT FÜR DICH #virtualsupporttalks;0
-2025-07-01;1.;Willkommen | REDEZEIT FÜR DICH #virtualsupporttalks;16
-2025-07-01;2.;Warum das Emotionsrad dein Verständnis für Gefühle vertiefen kann | REDEZEIT FÜR DICH #virtualsupporttalks;15
-2025-07-01;3.;Ich brauche Redezeit. | REDEZEIT FÜR DICH #virtualsupporttalks;13
-2025-07-01;4.;Lass uns über emotionale Erschöpfung reden | REDEZEIT FÜR DICH #virtualsupporttalks;5
-2025-07-01;5.;Ich höre zu! | REDEZEIT FÜR DICH #virtualsupporttalks;4
-2025-07-01;6.;Worst Case! Die Kunst des Umgangs mit Katastrophengedanken | REDEZEIT FÜR DICH #virtualsupporttalks;2
-2025-07-01;7.;Hilfe für Helikopter-Eltern: Mit diesen 7 Tipps kannst du dein Kind unterstützen | REDEZEIT FÜR DICH #virtualsupporttalks;1
-2025-07-01;8.;Lesezeit – das Redezeit Blog. | REDEZEIT FÜR DICH #virtualsupporttalks;1
-2025-07-01;9.;Streit bei Kindern - So begleitest du Konflikte richtig | REDEZEIT FÜR DICH #virtualsupporttalks;1
-2025-07-01;10.;Über uns | REDEZEIT FÜR DICH #virtualsupporttalks;1
-2025-07-01;11.;Fragen und Antworten | REDEZEIT FÜR DICH #virtualsupporttalks;0
-2025-07-01;12.;Für Ihre Mitarbeitenden! | REDEZEIT FÜR DICH #virtualsupporttalks;0
-2025-07-01;13.;Impressum | REDEZEIT FÜR DICH #virtualsupporttalks;0
-2025-07-01;14.;Transparenz | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-01;1.;Willkommen | REDEZEIT FÜR DICH #virtualsupporttalks;25
+2025-07-01;2.;Warum das Emotionsrad dein Verständnis für Gefühle vertiefen kann | REDEZEIT FÜR DICH #virtualsupporttalks;20
+2025-07-01;3.;Ich brauche Redezeit. | REDEZEIT FÜR DICH #virtualsupporttalks;17
+2025-07-01;4.;Ich höre zu! | REDEZEIT FÜR DICH #virtualsupporttalks;6
+2025-07-01;5.;Lass uns über emotionale Erschöpfung reden | REDEZEIT FÜR DICH #virtualsupporttalks;5
+2025-07-01;6.;Worst Case! Die Kunst des Umgangs mit Katastrophengedanken | REDEZEIT FÜR DICH #virtualsupporttalks;4
+2025-07-01;7.;Streit bei Kindern - So begleitest du Konflikte richtig | REDEZEIT FÜR DICH #virtualsupporttalks;3
+2025-07-01;8.;Über uns | REDEZEIT FÜR DICH #virtualsupporttalks;2
+2025-07-01;9.;"""Komm mir jetzt nicht mit Regenbogen"": So gelingt queersensibles Zuhören | REDEZEIT FÜR DICH #virtualsupporttalks";1
+2025-07-01;10.;Hilfe für Helikopter-Eltern: Mit diesen 7 Tipps kannst du dein Kind unterstützen | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-01;11.;Impressum | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-01;12.;In Verbindung bleiben mit unseren Gefühlen – Eine Anleitung | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-01;13.;Lesezeit – das Redezeit Blog. | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-01;14.;Fragen und Antworten | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-01;15.;Für Ihre Mitarbeitenden! | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-01;16.;Transparenz | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-01;17.;Welcome | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;1.;Willkommen | REDEZEIT FÜR DICH #virtualsupporttalks;10
+2025-07-02;2.;Ich brauche Redezeit. | REDEZEIT FÜR DICH #virtualsupporttalks;9
+2025-07-02;3.;Warum das Emotionsrad dein Verständnis für Gefühle vertiefen kann | REDEZEIT FÜR DICH #virtualsupporttalks;9
+2025-07-02;4.;Lass uns über emotionale Erschöpfung reden | REDEZEIT FÜR DICH #virtualsupporttalks;5
+2025-07-02;5.;Streit bei Kindern - So begleitest du Konflikte richtig | REDEZEIT FÜR DICH #virtualsupporttalks;3
+2025-07-02;6.;Wie Du das Kopfkino stoppen und Deine psychische Gesundheit verbessern kannst | REDEZEIT FÜR DICH #virtualsupporttalks;2
+2025-07-02;7.;Fragen und Antworten | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-02;8.;In Verbindung bleiben mit unseren Gefühlen – Eine Anleitung | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-02;9.;Studie zur mentalen Gesundheit: Mit Reden zu mehr Glück | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-02;10.;Treibt mich New Work in eine Erschöpfungsdepression? | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-02;11.;Worst Case! Die Kunst des Umgangs mit Katastrophengedanken | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-02;12.;Ich höre zu! | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;13.;Lesezeit – das Redezeit Blog. | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;14.;Transparenz | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;15.;Wichtige Nummern und Anlaufstellen | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;16.;Über uns | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-02;17.;Питання та відповіді | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;1.;Ich brauche Redezeit. | REDEZEIT FÜR DICH #virtualsupporttalks;20
+2025-07-03;2.;Warum das Emotionsrad dein Verständnis für Gefühle vertiefen kann | REDEZEIT FÜR DICH #virtualsupporttalks;16
+2025-07-03;3.;Willkommen | REDEZEIT FÜR DICH #virtualsupporttalks;13
+2025-07-03;4.;Streit bei Kindern - So begleitest du Konflikte richtig | REDEZEIT FÜR DICH #virtualsupporttalks;3
+2025-07-03;5.;Worst Case! Die Kunst des Umgangs mit Katastrophengedanken | REDEZEIT FÜR DICH #virtualsupporttalks;3
+2025-07-03;6.;Erzeugen von Zuversicht und Mut: Wie wir in herausfordernden Zeiten mental gesund bleiben können | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-03;7.;In Verbindung bleiben mit unseren Gefühlen – Eine Anleitung | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-03;8.;Studie zur mentalen Gesundheit: Mit Reden zu mehr Glück | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-03;9.;Willkommen bei REDEZEIT FÜR FAMILIE! | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-03;10.;Über uns | REDEZEIT FÜR DICH #virtualsupporttalks;1
+2025-07-03;11.;Fragen und Antworten | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;12.;Hilfe für Helikopter-Eltern: Mit diesen 7 Tipps kannst du dein Kind unterstützen | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;13.;Ich höre zu! | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;14.;Transparenz | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;15.;Warum ist uns seelische Gesundheit wichtig? | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;16.;Wichtige Nummern und Anlaufstellen | REDEZEIT FÜR DICH #virtualsupporttalks;0
+2025-07-03;17.;Wie Du das Kopfkino stoppen und Deine psychische Gesundheit verbessern kannst | REDEZEIT FÜR DICH #virtualsupporttalks;0

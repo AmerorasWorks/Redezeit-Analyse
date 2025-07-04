@@ -1,4 +1,4 @@
-﻿datum;eid;quelle;sitzungen;aufrufe;aufrufe pro sitzung
+datum;eid;quelle;sitzungen;aufrufe;aufrufe_pro_sitzung
 2022-03-12;1.;(direct);1;51;51
 2022-03-12;2.;(not set);1;42;42
 2022-03-13;1.;(direct);2;9;4.5
@@ -8767,13 +8767,33 @@
 2025-06-30;8.;chancenmacher.de;1;1;1
 2025-06-30;9.;einfach-wertvoll-leben.de;1;1;1
 2025-06-30;10.;kompetenznetz-einsamkeit.de;1;1;1
-2025-07-01;1.;google;31;39;1.26
-2025-07-01;2.;(not set);23;6;0.26
-2025-07-01;3.;(data not available);3;3;1
-2025-07-01;4.;(direct);3;3;1
-2025-07-01;5.;kompetenznetz-einsamkeit.de;2;2;1
-2025-07-01;6.;l.facebook.com;2;2;1
-2025-07-01;7.;fachverband-coaching.de;1;1;1
-2025-07-01;8.;lm.facebook.com;1;1;1
-2025-07-01;9.;m.facebook.com;1;1;1
-2025-07-01;10.;mamsterrad.de;1;1;1
+2025-07-01;1.;google;52;63;1.21
+2025-07-01;2.;(direct);9;8;0.89
+2025-07-01;3.;l.facebook.com;4;3;0.75
+2025-07-01;4.;kompetenznetz-einsamkeit.de;2;2;1
+2025-07-01;5.;statics.teams.cdn.office.net;2;1;0.5
+2025-07-01;6.;linkedin.com;1;2;2
+2025-07-01;7.;engage.cloud.microsoft;1;1;1
+2025-07-01;8.;fachverband-coaching.de;1;1;1
+2025-07-01;9.;fuerstenberg-foundation.de;1;1;1
+2025-07-01;10.;lm.facebook.com;1;1;1
+2025-07-01;11.;m.facebook.com;1;1;1
+2025-07-01;12.;mamsterrad.de;1;1;1
+2025-07-01;13.;seelischegesundheit.net;1;1;1
+2025-07-01;14.;tagassistant.google.com;1;1;1
+2025-07-02;1.;google;27;26;0.96
+2025-07-02;2.;(not set);15;3;0.2
+2025-07-02;3.;(direct);7;7;1
+2025-07-02;4.;fuerstenberg-foundation.de;3;3;1
+2025-07-02;5.;(data not available);2;3;1.5
+2025-07-02;6.;bing;2;1;0.5
+2025-07-03;1.;(not set);28;7;0.25
+2025-07-03;2.;google;27;23;0.85
+2025-07-03;3.;(direct);12;11;0.92
+2025-07-03;4.;(data not available);6;9;1.5
+2025-07-03;5.;kompetenznetz-einsamkeit.de;3;3;1
+2025-07-03;6.;ardalpha.de;2;2;1
+2025-07-03;7.;ecosia.org;2;2;1
+2025-07-03;8.;perplexity.ai;2;1;0.5
+2025-07-03;9.;alliance4ukraine.org;1;1;1
+2025-07-03;10.;fuerstenberg-foundation.de;1;1;1
