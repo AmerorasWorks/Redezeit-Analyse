@@ -3,6 +3,7 @@ from datetime import date, timedelta
 import pickle
 import os
 import sys
+from pathlib import Path
 import time
 import csv
 from selenium import webdriver
@@ -31,6 +32,7 @@ sys.path.append(os.path.dirname(__file__))
 
 from src.utils.kalender_funktion import select_date_range
 from src.utils.csv_manager import CSVFileHandler
+from src.utils.cleaning_csv import prepare_data_paths, copy_and_validate_csvs
 
 # Importiere alle Scraper-Funktionen
 from src.scraper.landingpage_scraper import (
@@ -54,7 +56,43 @@ from src.scraper.who_was_visiting_chart import (
 )
 
 
-COOKIE_PATH = resource_path("src/cookies/cookies.pkl")
+def get_chrome_driver() -> webdriver.Chrome:
+    """
+    Erzeugt einen Chrome-Webdriver, der immer den mit PyInstaller gebündelten
+    chromedriver.exe verwendet.
+    """
+    chrome_path = resource_path("chromedriver.exe")
+    service     = Service(executable_path=chrome_path)
+    options     = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+    return webdriver.Chrome(service=service, options=options)
+
+
+def ensure_cookie_dir(folder_name: str = "cookies") -> Path:
+    """
+    Ermittelt ein beschreibbares Basis-Verzeichnis neben der EXE (One-File)
+    oder im Projektordner (Dev-Mode) und legt darin einen Unterordner
+    mit dem Namen `folder_name` an, falls er noch nicht existiert.
+
+    :param folder_name: Name des Unterordners, standardmäßig "cookies"
+    :return: Path-Objekt zum angelegten Verzeichnis
+    """
+    # Basis-Verzeichnis wählen
+    if getattr(sys, "frozen", False):
+        # im gebündelten One-File-Modus ist sys.executable die EXE
+        base_dir = Path(sys.executable).parent
+    else:
+        # im Skript-Modus das Verzeichnis der aktuellen Datei
+        base_dir = Path(__file__).parent
+
+    # Unterordner anlegen, falls nicht vorhanden
+    cookie_dir = base_dir / folder_name
+    cookie_dir.mkdir(exist_ok=True)
+
+    return cookie_dir
+
+COOKIE_DIR = ensure_cookie_dir()
+COOKIE_PATH = COOKIE_DIR / "cookies.pkl"
 URL = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c6597ffb74/page/4okDC"
 
 
@@ -120,19 +158,15 @@ def show_log(container):
     )
 
 
+
+
+
 # === Initialisiere Chrome mit gespeicherten CookiesCookies ===
 def init_driver_with_cookies():
-    # Bundled chromedriver.exe finden
-    chrome_path = resource_path("chromedriver.exe")
-    service = Service(executable_path=chrome_path)
-
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(service=service, options=options)
-
+    driver = get_chrome_driver()
     driver.get(URL)
 
-    if os.path.exists(COOKIE_PATH):
+    if COOKIE_PATH.exists():
         with open(COOKIE_PATH, "rb") as f:
             cookies = pickle.load(f)
         for cookie in cookies:
@@ -151,18 +185,23 @@ def init_driver_with_cookies():
 
 # === Cookies speichern ===
 def save_cookies(driver):
-    cookies = driver.get_cookies()
+    # schreibt jetzt in den beschreibbaren Ordner neben der EXE
     with open(COOKIE_PATH, "wb") as f:
-        pickle.dump(cookies, f)
+        pickle.dump(driver.get_cookies(), f)
 
 
 # === Alle Scraper ausführen ===
 def run_all_scraper(start_date, end_date, log_container=None):
-    driver = init_driver_with_cookies()
+    # beschreibbaren Output-Ordner neben der EXE anlegen
+    if getattr(sys, "frozen", False):
+        base_dir = Path(sys.executable).parent
+    else:
+        base_dir = Path(__file__).parent
 
-    # year, kw, _ = start_date.isocalendar()
-    output_folder = os.path.join("src", "data", "raw")
-    os.makedirs(output_folder, exist_ok=True)
+    output_folder = base_dir / "data" / "raw"
+    output_folder.mkdir(parents=True, exist_ok=True)
+
+    driver = init_driver_with_cookies()
 
     current = start_date
     while current <= end_date:
@@ -183,7 +222,12 @@ def run_all_scraper(start_date, end_date, log_container=None):
             data = extract_landingpage_data(driver, current.isoformat())
             lp_csv = CSVFileHandler(
                 os.path.join(output_folder, f"landingpage.csv"),
-                headers=["datum", "eid", "seitentitel", "aufrufe"],
+                headers=[
+                    "datum", 
+                    "eid", 
+                    "seitentitel", 
+                    "aufrufe"
+                ],
             )
             for row in data:
                 lp_csv.append_row(row)
@@ -261,8 +305,23 @@ def run_all_scraper(start_date, end_date, log_container=None):
         finally:
             current += timedelta(days=1)
 
-    driver.quit()
-    log("✅ Alle Scraper erfolgreich abgeschlossen!", "success")
+    driver.quit()  # Wichtig: erst WebDriver schließen
+    time.sleep(5)  # Mini-Wartezeit zum Dateischreiben
+
+    paths = prepare_data_paths()
+    raw_files_exist = any(
+        os.path.exists(os.path.join(paths["output_folder"], fname))
+        for fname in paths["file_names"]
+    )
+    if raw_files_exist:
+        copy_and_validate_csvs(paths, log=log, show_log=show_log, log_container=log_container)
+        log("✅ Alle CSV-Dateien wurden erfolgreich aufbereitet.", "success")
+    else:
+        log(
+            "⚠️ Keine Rohdaten gefunden – möglicherweise ist beim Scraping etwas schiefgelaufen.",
+            "warning",
+        )
+
     if log_container:
         show_log(log_container)
 
@@ -333,9 +392,7 @@ def main():
 
         with col1:
             if st.button("🔄 Einmaliger Login"):
-                driver = webdriver.Chrome(
-                    service=Service(), options=webdriver.ChromeOptions()
-                )
+                driver = get_chrome_driver()
                 driver.get(URL)
                 log(
                     "🔐 Bitte im neuen Tab bei Google anmelden. Danach das Google-Tab schließen.",
@@ -348,13 +405,14 @@ def main():
                 show_log(log_container)  # Log aktualisieren NACH Aktion
 
             if st.button("🚀 Scraper ausführen"):
-                run_all_scraper(start_date, end_date)
+                run_all_scraper(start_date, end_date, log_container)
                 show_log(log_container)  # Log aktualisieren NACH Aktion
                 # Unsichtbarer minimaler Platzhalter (optional, falls du das brauchst)
                 st.markdown('<div id="log-placeholder"></div>', unsafe_allow_html=True)
 
     # Logfenster **ganz unten** nur einmal rendern, initial leer
     show_log(log_container)
+
 
 if __name__ == "__main__":
     try:

@@ -1,4 +1,7 @@
 .idea*
+# Cookie-Pickle nicht mit ins Repo
+/cookies/
+/src/cookies/cookies.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
