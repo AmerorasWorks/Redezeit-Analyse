@@ -1,0 +1,22 @@
+import sys
+import os
+import streamlit as st
+
+def resource_path(relative_path: str) -> str:
+    """
+    Gibt den Pfad zu einer Ressource relativ zum Arbeitsverzeichnis zurück.
+    Funktioniert im PyInstaller-Bundle und im Dev-Modus.
+    """
+    if hasattr(sys, "_MEIPASS"):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+def load_custom_css(relative_css_path: str):
+    css_file = resource_path(relative_css_path)
+    if not os.path.isfile(css_file):
+        st.error(f"CSS nicht gefunden: {css_file}")
+        return
+    with open(css_file, "r", encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
