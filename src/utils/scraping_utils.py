@@ -1,13 +1,13 @@
 import os
 import time
 from datetime import timedelta
-from pathlib import Path
+
 from src.utils.log_utils import log, show_log, is_date_scraped, log_scraped_date
 from src.utils.chrome_utils import init_driver_with_cookies
-from src.utils.kalender_funktion import select_date_range
-from src.utils.csv_manager import CSVFileHandler
-from src.utils.cleaning_csv import prepare_data_paths, copy_and_validate_csvs
-
+from src.utils.calender_utils import select_date_range
+from src.utils.csv_manager_utils import CSVFileHandler
+from src.utils.csv_cleaning_utils import prepare_data_paths, copy_and_validate_csvs
+from src.utils.file_utils import get_output_folder
 from src.scraper.landingpage_scraper import extract_table_data as extract_landingpage_data
 from src.scraper.user_behaviors_scraper import extract_user_behaviour
 from src.scraper.what_did_users_do_scraper import extract_table_data as extract_events_data
@@ -16,11 +16,11 @@ from src.scraper.where_new_visitors_come_from_chart import extract_table_for_pie
 from src.scraper.what_devices_used_chart import extract_table_for_piechart_gviz as extract_pie_devices
 from src.scraper.who_was_visiting_chart import extract_table_for_piechart_gviz as extract_pie_visitors
 
-def run_all_scraper(start_date, end_date, log_container=None):
-    base_dir = os.path.abspath(".")
-    output_folder = Path(base_dir) / "data" / "raw"
-    output_folder.mkdir(parents=True, exist_ok=True)
 
+
+def run_all_scraper(start_date, end_date, log_container=None):
+    output_folder = get_output_folder("raw")
+    
     driver = init_driver_with_cookies()
     current = start_date
     while current <= end_date:
