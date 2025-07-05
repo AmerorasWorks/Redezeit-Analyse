@@ -9,8 +9,8 @@ from selenium.common.exceptions import (
     TimeoutException,
     StaleElementReferenceException,
 )
-from src.utils.csv_manager import CSVFileHandler
-from src.utils.kalender_funktion import select_date_range
+from src.utils.csv_manager_utils import CSVFileHandler
+from src.utils.calender_utils import select_date_range
 
 
 # ========== Tabellendaten scrapen ==========

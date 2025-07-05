@@ -1,5 +1,3 @@
-# calendar_utils.py
-
 from datetime import date
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
