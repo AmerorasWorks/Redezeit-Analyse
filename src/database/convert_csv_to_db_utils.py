@@ -16,7 +16,8 @@ base_conn_params = {
 TARGET_DB = "redezeit"
 
 # CSV-Quellen
-CSV_FOLDER = r"C:\Users\Admin\Desktop\Redezeit-Analyse\src\data\clean"
+CSV_FOLDER = os.path.join(os.path.dirname(__file__), "..", "data", "clean")
+CSV_FOLDER = os.path.abspath(CSV_FOLDER)
 CSV_TABLE_MAP = {
     "landing_page_views.csv": "landing_page_views",
     "user_sessions.csv": "user_sessions",
