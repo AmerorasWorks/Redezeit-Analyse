@@ -2,17 +2,28 @@ import os
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+import configparser
 
 # ─────────────────────────────────────────────────────────────
 #  Supabase conn params
 # ─────────────────────────────────────────────────────────────
-supabase_conn_params = {
-    "host": "db.baxcdexzsiecvsuuebwz.supabase.co",  # your Supabase DB host
-    "port": 5432,
-    "user": "postgres",
-    "password": "Datacraft",  # replace with your actual password
-    "dbname": "postgres"  # Supabase uses 'postgres' as the default DB name
-}
+def load_db_config(config_file, section):
+    parser = configparser.ConfigParser()
+    parser.read(config_file)
+
+    if not parser.has_section(section):
+        raise Exception(f"Sektion '{section}' nicht in '{config_file}' gefunden.")
+
+    config = {key: value for key, value in parser.items(section)}
+
+    if config.get("enabled", "false").lower() != "true":
+        print(f"ℹ️ Verbindung für '{section}' ist in der Konfiguration deaktiviert.")
+        return None
+
+    # Port muss int sein für psycopg2
+    config["port"] = int(config["port"])
+    return config
+
 
 #  Target schema in Supabase (instead of creating a new DB)
 TARGET_SCHEMA = "redezeit"
@@ -273,7 +284,15 @@ def update_last_updated_table(conn):
 # ─────────────────────────────────────────────────────────────
 def main():
     print("🔗 Verbinde mit Supabase ...")
+    CONFIG_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'config.ini'))
+    supabase_conn_params = load_db_config(CONFIG_PATH, 'supabase')
+
+    if supabase_conn_params is None:
+        print("❌ Verbindung abgebrochen – Supabase-Konfiguration deaktiviert oder fehlerhaft.")
+        return
+
     conn = psycopg2.connect(**supabase_conn_params)
+
 
     ensure_schema_exists(conn)
 
