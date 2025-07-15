@@ -6,15 +6,48 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import configparser
 
 
-# 🔌 Verbindung zur PostgreSQL-Datenbank über .ini-Datei im Projekt-Hauptverzeichnis
-def db_connect(config_file='../../config.ini', section='postgresql'):
+# Hilfsfunktionen
+
+def parse_to_seconds(val):
+    try:
+        parts = str(val).split(":")
+        parts = [int(p) for p in parts]
+        if len(parts) == 2:  # mm:ss
+            return parts[0] * 60 + parts[1]
+        elif len(parts) == 3:  # hh:mm:ss
+            return parts[0] * 3600 + parts[1] * 60 + parts[2]
+    except:
+        return None
+
+
+def detect_type(series, col_name):
+    if col_name == "datum":
+        return "DATE"
+    try:
+        as_int = pd.to_numeric(series.dropna(), downcast="integer")
+        if (as_int == series.dropna()).all():
+            return "INTEGER"
+    except:
+        pass
+    try:
+        pd.to_numeric(series.dropna(), errors="raise")
+        return "FLOAT"
+    except:
+        pass
+    return "TEXT"
+
+
+def db_connect(config_file='../../../config.ini', section='postgresql', connect=True):
     parser = configparser.ConfigParser()
     parser.read(config_file)
 
-    if parser.has_section(section):
-        db_params = {key: value for key, value in parser.items(section)}
-    else:
+    if not parser.has_section(section):
         raise Exception(f"Sektion '{section}' nicht in '{config_file}' gefunden.")
+
+    db_params = {key: value for key, value in parser.items(section)}
+
+    if not connect:
+        return db_params
 
     try:
         conn = psycopg2.connect(**db_params)
@@ -24,16 +57,12 @@ def db_connect(config_file='../../config.ini', section='postgresql'):
         print("❌ Fehler bei der DB-Verbindung:", e)
         return None
 
-# Verbindung aufbauen
-conn = db_connect()
-
 
 # Ziel-Datenbank
 TARGET_DB = "redezeit"
 
 # CSV-Quellen
-CSV_FOLDER = os.path.join(os.path.dirname(__file__), "..", "data", "clean")
-CSV_FOLDER = os.path.abspath(CSV_FOLDER)
+CSV_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "clean"))
 CSV_TABLE_MAP = {
     "landing_page_views.csv": "landing_page_views",
     "user_sessions.csv": "user_sessions",
@@ -48,6 +77,7 @@ TABLES = list(CSV_TABLE_MAP.values())
 
 
 def drop_and_create_database():
+    base_conn_params = db_connect(config_file='../../../config.ini', section='supabase', connect=False)
     conn = psycopg2.connect(**base_conn_params)
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
@@ -79,23 +109,9 @@ def import_csv_to_postgres(csv_path, table_name, conn):
     if "datum" in df.columns:
         df["datum"] = pd.to_datetime(df["datum"], errors="coerce").dt.date
 
-    # NEU: Berechnung zeit_in_sekunden aus durchschn._zeit_auf_der_seite bei user_behaviors
+    # NEU: Berechnung zeit_in_sekunden aus durchschn._zeit_auf_der_seite bei user_sessions
     if table_name == "user_sessions" and "durchschn._zeit_auf_der_seite" in df.columns:
-
-        def parse_to_seconds(val):
-            try:
-                parts = str(val).split(":")
-                parts = [int(p) for p in parts]
-                if len(parts) == 2:  # mm:ss
-                    return parts[0] * 60 + parts[1]
-                elif len(parts) == 3:  # hh:mm:ss
-                    return parts[0] * 3600 + parts[1] * 60 + parts[2]
-            except:
-                return None
-
-        df["zeit_in_sekunden"] = df["durchschn._zeit_auf_der_seite"].apply(
-            parse_to_seconds
-        )
+        df["zeit_in_sekunden"] = df["durchschn._zeit_auf_der_seite"].apply(parse_to_seconds)
 
         # Spaltenreihenfolge anpassen: neue Spalte direkt nach 'durchschn._zeit_auf_der_seite'
         cols = list(df.columns)
@@ -103,22 +119,6 @@ def import_csv_to_postgres(csv_path, table_name, conn):
         cols.remove("zeit_in_sekunden")
         cols.insert(idx + 1, "zeit_in_sekunden")
         df = df[cols]
-
-    def detect_type(series, col_name):
-        if col_name == "datum":
-            return "DATE"
-        try:
-            as_int = pd.to_numeric(series.dropna(), downcast="integer")
-            if (as_int == series.dropna()).all():
-                return "INTEGER"
-        except:
-            pass
-        try:
-            pd.to_numeric(series.dropna(), errors="raise")
-            return "FLOAT"
-        except:
-            pass
-        return "TEXT"
 
     columns = df.columns
     col_types = {col: detect_type(df[col], col) for col in columns}
@@ -233,6 +233,7 @@ def fix_absprungrate(conn):
 
 
 def main():
+    base_conn_params = db_connect(config_file='../../../config.ini', section='supabase', connect=False)
     drop_and_create_database()
     conn = psycopg2.connect(**{**base_conn_params, "dbname": TARGET_DB})
 
