@@ -2,6 +2,8 @@ import os
 import time
 from datetime import timedelta
 
+from regex import F
+
 from src.utils.log_utils import log, show_log, is_date_scraped, log_scraped_date
 from src.utils.chrome_utils import init_driver_with_cookies
 from src.utils.calender_utils import select_date_range
@@ -25,7 +27,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
     current = start_date
     while current <= end_date:
         if is_date_scraped(current):
-            log(f"📅 {current.isoformat()} schon gescrapt – überspringe.", "info")
+            log(f"📅 {current.isoformat()} Daten bereits extrahiert – gehe zum nächsten Datum.\n", "info")
             if log_container:
                 show_log(log_container)
             current += timedelta(days=1)
@@ -127,13 +129,15 @@ def run_all_scraper(start_date, end_date, log_container=None):
         os.path.exists(os.path.join(paths["output_folder"], fname))
         for fname in paths["file_names"]
     )
-    if raw_files_exist:
+    if raw_files_exist and is_date_scraped is False:
         copy_and_validate_csvs(paths, log=log, show_log=show_log, log_container=log_container)
         log("✅ Alle CSV-Dateien wurden erfolgreich aufbereitet.", "success")
     else:
-        log(
-            "⚠️ Keine Rohdaten gefunden – möglicherweise ist beim Scraping etwas schiefgelaufen.",
-            "warning",
-        )
+        if is_date_scraped is not False:
+            log("⚠️ Rohdaten wurden bereits extrahiert.",
+            "success")
+        else:
+            log("⚠️ Keine Rohdaten gefunden – möglicherweise ist beim Scraping etwas schiefgelaufen.",
+                "warning")
     if log_container:
         show_log(log_container)

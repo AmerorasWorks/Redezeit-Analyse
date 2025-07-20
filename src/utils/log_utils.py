@@ -10,13 +10,13 @@ if "log_messages" not in st.session_state:
 
 def log(message: str, level: str = "info") -> None:
     colors = {
-        "info": "#000000",
-        "warning": "#7b4b02",
-        "error": "#600a0a",
-        "success": "#000000",
+        "info": "#ffffff",
+        "warning": "#bf9f00",
+        "error": "#ae0000",
+        "success": "#6fff00",
     }
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    color = colors.get(level, "#000000")
+    color = colors.get(level, "#ffffff")
     styled_message = f'<div style="color: {color}; font-family: monospace;">[{timestamp}] {message}</div>'
     st.session_state.log_messages.append(styled_message)
 

@@ -12,6 +12,8 @@ load_custom_css("style.css")
 
 
 def main():
+    if "log_messages" not in st.session_state:
+        st.session_state["log_messages"] = []
     st.markdown(
         """
         <style>header {visibility: hidden;}</style>
@@ -19,7 +21,7 @@ def main():
         """,
         unsafe_allow_html=True,
     )
-    st.markdown("<hr style='border:1px solid #004709;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border:1px solid #ffffff;'>", unsafe_allow_html=True)
     st.subheader("Willkommen zum Redezeit-Scraping-Tool!")
     st.markdown(
         """
@@ -31,7 +33,7 @@ def main():
         """,
         unsafe_allow_html=True,
     )
-    st.markdown("<hr style='border:1px solid #004709;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border:1px solid #ffffff;'>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 1, 1])
     with col1:
@@ -57,16 +59,16 @@ def main():
             time.sleep(60)
             save_cookies(driver)
             driver.quit()
-            log("✅ Cookies erfolgreich gespeichert.", "success")
-            show_log(log_container)
+            log("✅ Cookies erfolgreich gespeichert.", "info")
+            # show_log(log_container)
 
         if st.button("🚀 Scraper ausführen"):
             run_all_scraper(start_date, end_date, log_container)
-            show_log(log_container)
-            st.markdown('<div id="log-placeholder"></div>', unsafe_allow_html=True)
+            st.session_state["log_messages"].append("...")
 
     show_log(log_container)
-
+    log_html = '<div id="log-container">' + "<br>".join(st.session_state["log_messages"]) + '</div>'
+    log_container.markdown(log_html, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     try:
