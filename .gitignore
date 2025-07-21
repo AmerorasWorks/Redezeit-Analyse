@@ -1,5 +1,5 @@
 .idea*
-config.ini
+/config.ini
 
 # Cookie-Pickle nicht mit ins Repo
 /cookies/
