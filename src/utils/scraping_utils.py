@@ -27,7 +27,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
     current = start_date
     while current <= end_date:
         if is_date_scraped(current):
-            log(f"📅 {current.isoformat()} Daten bereits extrahiert – gehe zum nächsten Datum.\n", "info")
+            log(f"📅 {current.isoformat()} Daten bereits extrahiert – gehe zum nächsten Datum.", "info")
             if log_container:
                 show_log(log_container)
             current += timedelta(days=1)
@@ -133,11 +133,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
         copy_and_validate_csvs(paths, log=log, show_log=show_log, log_container=log_container)
         log("✅ Alle CSV-Dateien wurden erfolgreich aufbereitet.", "success")
     else:
-        if is_date_scraped is not False:
-            log("⚠️ Rohdaten wurden bereits extrahiert.",
-            "success")
-        else:
-            log("⚠️ Keine Rohdaten gefunden – möglicherweise ist beim Scraping etwas schiefgelaufen.",
-                "warning")
+        log("⚠️ Keine Rohdaten gefunden!\nMöglicherweise ist beim Scraping ein Fehler aufgetreten!\nOder sind diese Daten bereits extrahiert worden? 🤔",
+            "warning")
     if log_container:
         show_log(log_container)
