@@ -4,6 +4,7 @@ import time
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from subprocess import CREATE_NO_WINDOW
 from src.utils.file_utils import resource_path
 
 def ensure_cookie_dir(folder_name: str = "cookies") -> Path:
@@ -19,6 +20,7 @@ URL = "https://lookerstudio.google.com/u/0/reporting/3c1fa903-4f31-4e6f-9b54-f4c
 def get_chrome_driver() -> webdriver.Chrome:
     chrome_path = resource_path("chromedriver.exe")
     service = Service(executable_path=chrome_path)
+    service.creationflags = CREATE_NO_WINDOW
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
     return webdriver.Chrome(service=service, options=options)
