@@ -64,7 +64,7 @@ def main():
 
         if st.button("🚀 Scraper ausführen"):
             run_all_scraper(start_date, end_date, log_container)
-            st.session_state["log_messages"].append("...")
+            st.session_state["log_messages"].append(" ")
 
     show_log(log_container)
     log_html = '<div id="log-container">' + "<br>".join(st.session_state["log_messages"]) + '</div>'

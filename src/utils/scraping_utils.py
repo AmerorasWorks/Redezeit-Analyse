@@ -22,9 +22,9 @@ from src.scraper.who_was_visiting_chart import extract_table_for_piechart_gviz a
 
 def run_all_scraper(start_date, end_date, log_container=None):
     output_folder = get_output_folder("raw")
-    
     driver = init_driver_with_cookies()
     current = start_date
+    new_data = False
     while current <= end_date:
         if is_date_scraped(current):
             log(f"📅 {current.isoformat()} Daten bereits extrahiert – gehe zum nächsten Datum.", "info")
@@ -115,6 +115,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
                 show_log(log_container)
         else:
             log_scraped_date(current)
+            new_data = True
             log(f"✅ {current.isoformat()} geloggt.", "success")
             if log_container:
                 show_log(log_container)
@@ -129,7 +130,7 @@ def run_all_scraper(start_date, end_date, log_container=None):
         os.path.exists(os.path.join(paths["output_folder"], fname))
         for fname in paths["file_names"]
     )
-    if raw_files_exist and is_date_scraped is False:
+    if raw_files_exist and new_data:
         copy_and_validate_csvs(paths, log=log, show_log=show_log, log_container=log_container)
         log("✅ Alle CSV-Dateien wurden erfolgreich aufbereitet.", "success")
     else:
