@@ -7,9 +7,14 @@ from src.utils.chrome_utils import get_chrome_driver, save_cookies, URL
 from src.utils.log_utils import log, show_log
 from src.utils.scraping_utils import run_all_scraper
 
+# config
+st.set_page_config(
+    page_title="scrapetime",
+    page_icon="web-crawler.png"
+    )
+
 # CSS laden
 load_custom_css("style.css")
-
 
 def main():
     if "log_messages" not in st.session_state:

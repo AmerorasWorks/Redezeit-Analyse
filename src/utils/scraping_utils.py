@@ -1,9 +1,6 @@
 import os
 import time
 from datetime import timedelta
-
-from regex import F
-
 from src.utils.log_utils import log, show_log, is_date_scraped, log_scraped_date
 from src.utils.chrome_utils import init_driver_with_cookies
 from src.utils.calender_utils import select_date_range
