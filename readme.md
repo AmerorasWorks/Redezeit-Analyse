@@ -75,7 +75,7 @@ Im Fokus steht die Extraktion, Bereinigung und Analyse der Web-Traffic-Daten aus
 
 ## Mitwirkende
 
-- Hybriz, u. a. Projektleitung, Entwicklung, Data Engineering
+- Ameroras, HyBRiZx420, Stringsdaemon & BirolAyar  u. a. Projektleitung, Entwicklung, Data Engineering
 - Mitwirkende aus der Redezeit-Community
 
 ## Lizenz
