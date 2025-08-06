@@ -10,11 +10,11 @@ from src.utils.scraping_utils import run_all_scraper
 # config
 st.set_page_config(
     page_title="scrapetime",
-    page_icon="web-crawler.png"
+    page_icon="src/utils/boiler/web-crawler.png"
     )
 
 # CSS laden
-load_custom_css("style.css")
+load_custom_css("src/utils/boiler/style.css")
 
 def main():
     if "log_messages" not in st.session_state:
@@ -31,9 +31,9 @@ def main():
     st.markdown(
         """
         <div class="custom-info">
-            Hier kannst du Daten vom Redezeit-Dashboard extrahieren und in CSV-Dateien speichern.<br>
+            Hier kannst du die Daten vom Redezeit-Dashboard extrahieren und in deinen CSV-Dateien speichern.<br>
             Bitte beachte, dass du dich einmalig bei Google anmelden musst, um die Cookies zu speichern.<br>
-            Danach kannst du die Scraper für einen bestimmten Zeitraum ausführen.
+            Danach kannst du die Scraper für den ausgewählten Zeitraum ausführen.
         </div>
         """,
         unsafe_allow_html=True,

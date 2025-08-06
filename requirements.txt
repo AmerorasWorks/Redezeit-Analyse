@@ -1,3 +1,4 @@
+
 streamlit~=1.43.1
 selenium~=4.21.0
 beautifulsoup4~=4.13.3
@@ -9,3 +10,20 @@ pillow~=11.3.0
 easyocr~=1.7.1
 fastapi~=0.111.0
 uvicorn[standard]~=0.30.0
+
+# Additional dependencies discovered by inspecting the repository's Python files and Jupyter notebooks.
+# The application interacts with a PostgreSQL database via psycopg2 and performs
+# numerical and data‑analysis tasks in notebooks. These packages are required
+# for database connections, numerical computation, data visualization, machine
+# learning, and time‑series analysis.
+psycopg2-binary~=2.9.10
+numpy~=2.3.2
+matplotlib~=3.10.5
+seaborn~=0.13.2
+scipy~=1.16.1
+scikit-learn~=1.7.1
+mlxtend~=0.23.4
+statsmodels~=0.14.5
+
+# Required for reading Excel files in notebooks and when using pandas.read_excel.
+openpyxl~=3.1.5

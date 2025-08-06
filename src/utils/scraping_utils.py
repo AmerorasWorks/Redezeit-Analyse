@@ -7,13 +7,13 @@ from src.utils.calender_utils import select_date_range
 from src.utils.csv_manager_utils import CSVFileHandler
 from src.utils.csv_cleaning_utils import prepare_data_paths, copy_and_validate_csvs
 from src.utils.file_utils import get_output_folder
-from src.scraper.landingpage_scraper import extract_table_data as extract_landingpage_data
-from src.scraper.user_behaviors_scraper import extract_user_behaviour
-from src.scraper.what_did_users_do_scraper import extract_table_data as extract_events_data
-from src.scraper.where_did_they_come_from_scraper import extract_table_data as extract_sources_data
-from src.scraper.where_new_visitors_come_from_chart import extract_table_for_piechart_gviz as extract_pie_sources
-from src.scraper.what_devices_used_chart import extract_table_for_piechart_gviz as extract_pie_devices
-from src.scraper.who_was_visiting_chart import extract_table_for_piechart_gviz as extract_pie_visitors
+from src.utils.scraper.landingpage_scraper import extract_table_data as extract_landingpage_data
+from src.utils.scraper.user_behaviors_scraper import extract_user_behaviour
+from src.utils.scraper.what_did_users_do_scraper import extract_table_data as extract_events_data
+from src.utils.scraper.where_did_they_come_from_scraper import extract_table_data as extract_sources_data
+from src.utils.scraper.where_new_visitors_come_from_chart import extract_table_for_piechart_gviz as extract_pie_sources
+from src.utils.scraper.what_devices_used_chart import extract_table_for_piechart_gviz as extract_pie_devices
+from src.utils.scraper.who_was_visiting_chart import extract_table_for_piechart_gviz as extract_pie_visitors
 
 
 
